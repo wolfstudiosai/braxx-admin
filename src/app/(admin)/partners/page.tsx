@@ -160,6 +160,15 @@ const maxRevenue = 52000;
 
 const REGION_FILTERS = ["All", "West Coast", "East Coast", "South", "Midwest"];
 
+const ACCENT_BORDER: Record<string, string> = {
+  "from-violet-500 to-indigo-500": "border-l-violet-500",
+  "from-blue-500 to-cyan-500": "border-l-blue-500",
+  "from-emerald-500 to-teal-500": "border-l-emerald-500",
+  "from-amber-500 to-orange-500": "border-l-amber-500",
+  "from-pink-500 to-rose-500": "border-l-pink-500",
+  "from-zinc-400 to-zinc-500": "border-l-zinc-400",
+};
+
 // ─── Helpers ─────────────────────────────────────────────────────────────────
 
 function getStatusDotStatus(status: "active" | "pending"): "active" | "pending" {
@@ -283,12 +292,12 @@ export default function PartnersPage() {
             <div
               key={partner.name}
               className={cn(
-                "bento-card group cursor-pointer hover:shadow-md transition-all",
+                "eng-card group cursor-pointer hover:shadow-md transition-all border-l-2",
+                ACCENT_BORDER[partner.accent] ?? "border-l-zinc-400",
                 "animate-in",
                 i < 6 && `stagger-${i + 1}`
               )}
             >
-              <div className={cn("h-1.5 w-full bg-gradient-to-r", partner.accent)} />
               <div className="p-4 space-y-3">
                 <div className="flex items-start justify-between">
                   <div>
@@ -339,11 +348,11 @@ export default function PartnersPage() {
       {/* ── Bottom Grid ── */}
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-3 mt-2">
         {/* Revenue Chart — spans 2 cols */}
-        <div className="md:col-span-2 bento-card p-5 bg-mesh-gradient">
+        <div className="md:col-span-2 eng-card p-5">
           <div className="flex items-center justify-between mb-4">
             <div>
-              <span className="text-xs font-medium text-muted-foreground uppercase tracking-wider block">Partner Revenue</span>
-              <h3 className="text-base font-bold text-foreground mt-0.5">Quarterly by Partner</h3>
+              <span className="text-[10px] font-mono font-medium text-muted-foreground uppercase tracking-wider block">Partner Revenue</span>
+              <h3 className="text-sm font-medium text-foreground mt-0.5">Quarterly by Partner</h3>
             </div>
             <button className="text-[10px] font-mono text-primary hover:underline flex items-center gap-1 uppercase tracking-wider">
               Details <ArrowUpRight className="h-3 w-3" />
@@ -370,8 +379,9 @@ export default function PartnersPage() {
                   contentStyle={{
                     background: "hsl(var(--card))",
                     border: "1px solid hsl(var(--border))",
-                    borderRadius: "8px",
+                    borderRadius: "4px",
                     fontSize: "12px",
+                    fontFamily: "monospace",
                   }}
                 />
                 <Bar dataKey="revenue" radius={[6, 6, 0, 0]}>
@@ -388,8 +398,8 @@ export default function PartnersPage() {
         </div>
 
         {/* Geographic Coverage — Dark Card */}
-        <div className="bento-card-dark p-5 bg-dots-pattern">
-          <span className="text-xs font-medium text-muted-foreground uppercase tracking-wider">Geo Coverage</span>
+        <div className="eng-card-dark p-5">
+          <span className="text-[10px] font-mono font-medium text-muted-foreground uppercase tracking-wider">Geo Coverage</span>
           <div className="space-y-2.5 mt-4">
             {GEO_COVERAGE.map((item) => (
               <div key={item.region} className="space-y-1">
@@ -420,9 +430,9 @@ export default function PartnersPage() {
         </div>
 
         {/* Approval Center + Activity — Dark Card */}
-        <div className="bento-card-dark p-5 flex flex-col animate-border-glow">
+        <div className="eng-card-dark p-5 flex flex-col">
           <div className="flex items-center justify-between mb-3">
-            <span className="text-xs font-medium text-muted-foreground uppercase tracking-wider">Approval Center</span>
+            <span className="text-[10px] font-mono font-medium text-muted-foreground uppercase tracking-wider">Approval Center</span>
             <Badge variant="outline" className="text-[9px] h-5 px-1.5 border-border text-muted-foreground">
               {PENDING_APPLICATIONS.length} pending
             </Badge>
@@ -478,7 +488,7 @@ export default function PartnersPage() {
 
           {/* Inline Activity */}
           <div className="mt-4 pt-3 border-t border-border">
-            <span className="text-xs font-medium text-muted-foreground uppercase tracking-wider block mb-2">Recent Activity</span>
+            <span className="text-[10px] font-mono font-medium text-muted-foreground uppercase tracking-wider block mb-2">Recent Activity</span>
             <div className="space-y-0">
               {RECENT_ACTIVITY.map((item, i) => (
                 <FeedItem

@@ -27,7 +27,6 @@ import {
   X,
   Clock,
   AlertCircle,
-  DollarSign,
 } from "lucide-react";
 
 // ─── Data ───────────────────────────────────────────────────────────────────

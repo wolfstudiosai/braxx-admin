@@ -15,7 +15,6 @@ import {
   Download,
   MoreHorizontal,
   Plus,
-  Layers,
   Upload,
 } from "lucide-react";
 import { ModuleChart } from "@/components/workspace";
