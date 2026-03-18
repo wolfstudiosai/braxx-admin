@@ -114,10 +114,10 @@ export function CommandBar() {
       <div className="h-[var(--command-bar-height)] flex items-center gap-3 px-5 border-b border-border bg-card">
         {/* Brand */}
         <Link href="/performance" className="flex items-center gap-2 shrink-0 mr-2">
-          <div className="flex h-7 w-7 items-center justify-center rounded-md bg-foreground">
-            <span className="text-[10px] font-bold text-background tracking-wider">BX</span>
+          <div className="flex h-6 w-6 items-center justify-center rounded bg-foreground">
+            <span className="text-[9px] font-mono font-bold text-background tracking-wider">BX</span>
           </div>
-          <span className="text-sm font-semibold tracking-wide text-foreground hidden sm:block">BRAXX</span>
+          <span className="text-xs font-mono font-medium tracking-wider text-foreground hidden sm:block uppercase">BRAXX</span>
         </Link>
 
         {/* Universal Search trigger */}
@@ -126,10 +126,10 @@ export function CommandBar() {
             setOpen(true);
             setTimeout(() => inputRef.current?.focus(), 50);
           }}
-          className="flex items-center gap-2 flex-1 max-w-xl mx-auto rounded-lg border border-border bg-background px-3 py-1.5 text-sm text-muted-foreground hover:border-primary/30 hover:bg-secondary/50 transition-colors"
+          className="flex items-center gap-2 flex-1 max-w-xl mx-auto rounded border border-border bg-background px-3 py-1.5 text-sm text-muted-foreground hover:border-foreground/20 transition-colors"
         >
           <Search className="h-3.5 w-3.5 shrink-0" />
-          <span className="flex-1 text-left text-xs">Search modules, records, people...</span>
+          <span className="flex-1 text-left text-[11px] font-mono">Search modules, records, people...</span>
           <kbd className="hidden sm:inline-flex h-5 items-center gap-0.5 rounded border border-border bg-secondary px-1.5 font-mono text-[10px] text-muted-foreground">
             <Command className="h-2.5 w-2.5" />K
           </kbd>
@@ -140,7 +140,7 @@ export function CommandBar() {
           {/* Notifications */}
           <button className="relative flex items-center justify-center rounded-lg h-8 w-8 text-muted-foreground hover:bg-secondary hover:text-foreground transition-colors">
             <Bell className="h-4 w-4" />
-            <span className="absolute -top-0.5 -right-0.5 flex h-3.5 w-3.5 items-center justify-center rounded-full bg-primary text-[8px] font-bold text-primary-foreground">3</span>
+            <span className="absolute -top-0.5 -right-0.5 flex h-3.5 w-3.5 items-center justify-center rounded bg-foreground text-[7px] font-mono font-bold text-background">3</span>
           </button>
 
           {/* User */}
@@ -148,11 +148,11 @@ export function CommandBar() {
             <DropdownMenuTrigger asChild>
               <button className="flex items-center gap-2 rounded-lg p-1 hover:bg-secondary transition-colors ml-1">
                 <Avatar className="h-7 w-7">
-                  <AvatarFallback className="bg-primary/10 text-primary text-[10px] font-semibold">
+                  <AvatarFallback className="bg-secondary text-foreground text-[10px] font-mono font-medium">
                     {getInitials("Marcus Chen")}
                   </AvatarFallback>
                 </Avatar>
-                <span className="text-xs font-medium text-foreground hidden sm:block">Marcus</span>
+                <span className="text-[11px] font-mono font-medium text-foreground hidden sm:block">Marcus</span>
               </button>
             </DropdownMenuTrigger>
             <DropdownMenuContent align="end" className="w-56">
@@ -182,7 +182,7 @@ export function CommandBar() {
             }
           }}
         >
-          <div className="w-full max-w-lg rounded-xl border border-border bg-card shadow-2xl overflow-hidden">
+          <div className="w-full max-w-lg rounded-lg border border-border bg-card shadow-2xl overflow-hidden">
             {/* Input */}
             <div className="flex items-center gap-3 px-4 border-b border-border">
               <Search className="h-4 w-4 text-muted-foreground shrink-0" />
@@ -207,7 +207,7 @@ export function CommandBar() {
 
               {!query.trim() && (
                 <div className="px-4 py-3">
-                  <p className="text-[11px] font-medium text-muted-foreground uppercase tracking-wider mb-2">Quick Navigation</p>
+                  <p className="text-[10px] font-mono text-muted-foreground uppercase tracking-wider mb-2">Quick Navigation</p>
                   <div className="space-y-0.5">
                     {searchIndex.filter(r => r.category === "Modules").map((r) => (
                       <button
@@ -226,7 +226,7 @@ export function CommandBar() {
 
               {Object.entries(grouped).map(([category, items]) => (
                 <div key={category} className="px-4 py-2">
-                  <p className="text-[11px] font-medium text-muted-foreground uppercase tracking-wider mb-1.5">{category}</p>
+                  <p className="text-[10px] font-mono text-muted-foreground uppercase tracking-wider mb-1.5">{category}</p>
                   <div className="space-y-0.5">
                     {items.map((r) => (
                       <button
