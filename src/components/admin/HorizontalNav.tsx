@@ -43,7 +43,7 @@ export function HorizontalNav() {
 
   return (
     <nav className="h-[var(--nav-height)] flex items-end px-5 border-b border-border bg-card overflow-x-auto scrollbar-thin">
-      <div className="flex items-end gap-0.5 min-w-max">
+      <div className="flex items-end gap-0 min-w-max">
         {navItems.map((item) => {
           const isActive =
             pathname === item.href || pathname.startsWith(item.href + "/");
@@ -54,19 +54,16 @@ export function HorizontalNav() {
               key={item.href}
               href={item.href}
               className={cn(
-                "flex items-center gap-1.5 px-3 pb-2.5 pt-2 text-[13px] transition-colors border-b-2 -mb-[1px]",
+                "flex items-center gap-1.5 px-3 pb-2 pt-2 text-[11px] font-mono uppercase tracking-wider transition-colors border-b -mb-[1px]",
                 isActive
-                  ? "border-primary text-primary font-medium"
-                  : "border-transparent text-muted-foreground font-normal hover:text-foreground hover:border-border"
+                  ? "border-foreground text-foreground font-medium"
+                  : "border-transparent text-muted-foreground hover:text-foreground"
               )}
             >
-              <Icon
-                className="h-3.5 w-3.5 shrink-0"
-                strokeWidth={isActive ? 2 : 1.5}
-              />
+              <Icon className="h-3 w-3 shrink-0" strokeWidth={isActive ? 2 : 1.5} />
               <span>{item.label}</span>
               {item.label === "Inbox" && (
-                <span className="flex h-4 min-w-4 items-center justify-center rounded-full bg-primary/10 text-primary text-[9px] font-bold px-1">
+                <span className="flex h-3.5 min-w-3.5 items-center justify-center rounded bg-foreground text-background text-[8px] font-mono font-bold px-0.5">
                   5
                 </span>
               )}
