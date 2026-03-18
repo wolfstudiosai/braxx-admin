@@ -1,0 +1,667 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+// ─── AUTH & RBAC ─────────────────────────────────────────────
+
+model User {
+  id           String    @id @default(cuid())
+  fullName     String
+  email        String    @unique
+  passwordHash String
+  roleId       String
+  isActive     Boolean   @default(true)
+  avatarUrl    String?
+  createdAt    DateTime  @default(now())
+  updatedAt    DateTime  @updatedAt
+  lastLoginAt  DateTime?
+
+  role Role @relation(fields: [roleId], references: [id])
+
+  createdProducts  Product[]         @relation("ProductCreatedBy")
+  updatedProducts  Product[]         @relation("ProductUpdatedBy")
+  createdDealers   Dealer[]          @relation("DealerCreatedBy")
+  updatedDealers   Dealer[]          @relation("DealerUpdatedBy")
+  ownedApplications Application[]    @relation("ApplicationOwner")
+  assignedLeads    Lead[]            @relation("LeadAssignedTo")
+  assignedOrders   Order[]           @relation("OrderAssignedRep")
+  uploadedAssets   Asset[]           @relation("AssetUploadedBy")
+  publishedContent ContentBlock[]    @relation("ContentPublishedBy")
+  activityLogs     ActivityLog[]     @relation("ActivityActor")
+  notes            Note[]            @relation("NoteAuthor")
+  inventoryMoves   InventoryMovement[] @relation("MovementPerformedBy")
+  ownedCampaigns   Campaign[]          @relation("CampaignOwner")
+  ownedTasks       OperationTask[]     @relation("TaskAssignee")
+  requestedExpenses Expense[]          @relation("ExpenseRequester")
+  approvedExpenses Expense[]           @relation("ExpenseApprover")
+  socialPosts      SocialPost[]        @relation("SocialPostAuthor")
+
+  @@index([email])
+  @@index([roleId])
+}
+
+model Role {
+  id          String   @id @default(cuid())
+  name        String   @unique
+  description String?
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+
+  users       User[]
+  permissions RolePermission[]
+}
+
+model Permission {
+  id        String   @id @default(cuid())
+  key       String   @unique
+  label     String
+  module    String
+  createdAt DateTime @default(now())
+
+  roles RolePermission[]
+
+  @@index([module])
+}
+
+model RolePermission {
+  id           String @id @default(cuid())
+  roleId       String
+  permissionId String
+
+  role       Role       @relation(fields: [roleId], references: [id], onDelete: Cascade)
+  permission Permission @relation(fields: [permissionId], references: [id], onDelete: Cascade)
+
+  @@unique([roleId, permissionId])
+  @@index([roleId])
+  @@index([permissionId])
+}
+
+// ─── PRODUCTS ────────────────────────────────────────────────
+
+enum ProductStatus {
+  draft
+  active
+  archived
+  discontinued
+}
+
+model Product {
+  id               String        @id @default(cuid())
+  name             String
+  slug             String        @unique
+  model            String
+  sku              String        @unique
+  category         String
+  description      String?       @db.Text
+  shortDescription String?
+  status           ProductStatus @default(draft)
+  price            Decimal       @db.Decimal(10, 2)
+  compareAtPrice   Decimal?      @db.Decimal(10, 2)
+  cost             Decimal?      @db.Decimal(10, 2)
+  battery          String?
+  power            String?
+  topSpeed         String?
+  range            String?
+  wheelSize        String?
+  suspension       String?
+  brakes           String?
+  weight           String?
+  colorways        Json?
+  specs            Json?
+  featured         Boolean       @default(false)
+  preorder         Boolean       @default(false)
+  inventoryCount   Int           @default(0)
+  shippingStatus   String?
+  publishToSite    Boolean       @default(false)
+  createdAt        DateTime      @default(now())
+  updatedAt        DateTime      @updatedAt
+  createdById      String?
+  updatedById      String?
+
+  createdBy  User? @relation("ProductCreatedBy", fields: [createdById], references: [id])
+  updatedBy  User? @relation("ProductUpdatedBy", fields: [updatedById], references: [id])
+  assets     ProductAsset[]
+  inventory  InventoryRecord[]
+  orders     Order[]
+
+  @@index([status])
+  @@index([category])
+  @@index([slug])
+}
+
+model ProductAsset {
+  id        String   @id @default(cuid())
+  productId String
+  assetId   String
+  sortOrder Int      @default(0)
+  createdAt DateTime @default(now())
+
+  product Product @relation(fields: [productId], references: [id], onDelete: Cascade)
+  asset   Asset   @relation(fields: [assetId], references: [id], onDelete: Cascade)
+
+  @@index([productId])
+}
+
+// ─── DEALERS ─────────────────────────────────────────────────
+
+enum DealerStatus {
+  prospect
+  onboarding
+  active
+  inactive
+  terminated
+}
+
+model Dealer {
+  id               String       @id @default(cuid())
+  name             String
+  locationName     String?
+  address1         String
+  address2         String?
+  city             String
+  state            String
+  zip              String
+  country          String       @default("US")
+  latitude         Decimal?     @db.Decimal(10, 7)
+  longitude        Decimal?     @db.Decimal(10, 7)
+  contactName      String?
+  phone            String?
+  email            String?
+  website          String?
+  inventoryCarried Json?
+  productTypes     Json?
+  status           DealerStatus @default(prospect)
+  featured         Boolean      @default(false)
+  publicVisibility Boolean      @default(false)
+  launchDate       DateTime?
+  notes            String?      @db.Text
+  createdAt        DateTime     @default(now())
+  updatedAt        DateTime     @updatedAt
+  createdById      String?
+  updatedById      String?
+
+  createdBy User?        @relation("DealerCreatedBy", fields: [createdById], references: [id])
+  updatedBy User?        @relation("DealerUpdatedBy", fields: [updatedById], references: [id])
+  assets    DealerAsset[]
+
+  @@index([status])
+  @@index([state])
+}
+
+model DealerAsset {
+  id        String   @id @default(cuid())
+  dealerId  String
+  assetId   String
+  sortOrder Int      @default(0)
+  createdAt DateTime @default(now())
+
+  dealer Dealer @relation(fields: [dealerId], references: [id], onDelete: Cascade)
+  asset  Asset  @relation(fields: [assetId], references: [id], onDelete: Cascade)
+
+  @@index([dealerId])
+}
+
+// ─── APPLICATIONS ────────────────────────────────────────────
+
+enum ApplicationType {
+  dealer
+  ambassador
+  corporate
+  tech_support
+  partner
+}
+
+enum ApplicationStatus {
+  new
+  in_review
+  follow_up_needed
+  approved
+  rejected
+  archived
+}
+
+model Application {
+  id               String            @id @default(cuid())
+  applicationType  ApplicationType
+  fullName         String
+  email            String
+  phone            String?
+  company          String?
+  city             String?
+  state            String?
+  country          String?
+  website          String?
+  socialUrl        String?
+  interestType     String?
+  message          String?           @db.Text
+  notes            String?           @db.Text
+  attachments      Json?
+  status           ApplicationStatus @default(new)
+  ownerId          String?
+  submittedAt      DateTime          @default(now())
+  reviewedAt       DateTime?
+  internalComments String?           @db.Text
+  source           String?
+  createdAt        DateTime          @default(now())
+  updatedAt        DateTime          @updatedAt
+
+  owner User? @relation("ApplicationOwner", fields: [ownerId], references: [id])
+
+  @@index([status])
+  @@index([applicationType])
+  @@index([ownerId])
+}
+
+// ─── INVENTORY ───────────────────────────────────────────────
+
+enum LocationType {
+  warehouse
+  dealer
+  transit
+  showroom
+}
+
+model InventoryRecord {
+  id               String       @id @default(cuid())
+  productId        String
+  locationName     String
+  locationType     LocationType @default(warehouse)
+  variant          String?
+  serialNumber     String?
+  availableUnits   Int          @default(0)
+  reservedUnits    Int          @default(0)
+  soldUnits        Int          @default(0)
+  incomingUnits    Int          @default(0)
+  reorderThreshold Int          @default(5)
+  notes            String?      @db.Text
+  createdAt        DateTime     @default(now())
+  updatedAt        DateTime     @updatedAt
+
+  product   Product             @relation(fields: [productId], references: [id])
+  movements InventoryMovement[]
+
+  @@index([productId])
+  @@index([locationType])
+}
+
+enum MovementType {
+  receive
+  reserve
+  release
+  sell
+  adjust
+  transfer_out
+  transfer_in
+}
+
+model InventoryMovement {
+  id                String       @id @default(cuid())
+  inventoryRecordId String
+  movementType      MovementType
+  quantity          Int
+  reference         String?
+  notes             String?
+  performedById     String?
+  createdAt         DateTime     @default(now())
+
+  inventoryRecord InventoryRecord @relation(fields: [inventoryRecordId], references: [id], onDelete: Cascade)
+  performedBy     User?           @relation("MovementPerformedBy", fields: [performedById], references: [id])
+
+  @@index([inventoryRecordId])
+  @@index([movementType])
+}
+
+// ─── LEADS ───────────────────────────────────────────────────
+
+enum LeadStage {
+  new
+  qualified
+  contacted
+  negotiating
+  converted
+  lost
+}
+
+model Lead {
+  id              String    @id @default(cuid())
+  contactType     String?
+  source          String?
+  fullName        String
+  company         String?
+  email           String
+  phone           String?
+  city            String?
+  state           String?
+  country         String?
+  interest        String?
+  productInterest String?
+  budgetRange     String?
+  stage           LeadStage @default(new)
+  assignedToId    String?
+  lastContactDate DateTime?
+  nextActionDate  DateTime?
+  notes           String?   @db.Text
+  createdAt       DateTime  @default(now())
+  updatedAt       DateTime  @updatedAt
+
+  assignedTo User? @relation("LeadAssignedTo", fields: [assignedToId], references: [id])
+
+  @@index([stage])
+  @@index([assignedToId])
+}
+
+// ─── ORDERS ──────────────────────────────────────────────────
+
+model Order {
+  id                String   @id @default(cuid())
+  orderNumber       String   @unique
+  customerName      String
+  customerEmail     String
+  productId         String?
+  model             String?
+  quantity          Int      @default(1)
+  revenue           Decimal  @db.Decimal(10, 2)
+  cost              Decimal? @db.Decimal(10, 2)
+  margin            Decimal? @db.Decimal(10, 2)
+  paymentStatus     String   @default("pending")
+  fulfillmentStatus String   @default("unfulfilled")
+  shippingStatus    String?
+  trackingNumber    String?
+  saleType          String?
+  sourceChannel     String?
+  assignedRepId     String?
+  notes             String?  @db.Text
+  createdAt         DateTime @default(now())
+  updatedAt         DateTime @updatedAt
+
+  product     Product? @relation(fields: [productId], references: [id])
+  assignedRep User?    @relation("OrderAssignedRep", fields: [assignedRepId], references: [id])
+
+  @@index([orderNumber])
+  @@index([paymentStatus])
+}
+
+// ─── MEDIA ───────────────────────────────────────────────────
+
+enum AssetType {
+  image
+  video
+  document
+  other
+}
+
+model Asset {
+  id            String    @id @default(cuid())
+  title         String
+  fileName      String
+  fileUrl       String
+  mimeType      String?
+  sizeBytes     Int?
+  assetType     AssetType @default(image)
+  tags          Json?
+  relatedModule String?
+  uploadedById  String?
+  visibility    String    @default("internal")
+  version       Int       @default(1)
+  createdAt     DateTime  @default(now())
+  updatedAt     DateTime  @updatedAt
+
+  uploadedBy    User?          @relation("AssetUploadedBy", fields: [uploadedById], references: [id])
+  productAssets ProductAsset[]
+  dealerAssets  DealerAsset[]
+
+  @@index([assetType])
+  @@index([relatedModule])
+}
+
+// ─── CONTENT ─────────────────────────────────────────────────
+
+model ContentBlock {
+  id            String   @id @default(cuid())
+  key           String   @unique
+  title         String
+  section       String?
+  content       Json?
+  status        String   @default("draft")
+  publishAt     DateTime?
+  publishedById String?
+  createdAt     DateTime @default(now())
+  updatedAt     DateTime @updatedAt
+
+  publishedBy User? @relation("ContentPublishedBy", fields: [publishedById], references: [id])
+
+  @@index([key])
+  @@index([section])
+}
+
+// ─── ACTIVITY ────────────────────────────────────────────────
+
+model ActivityLog {
+  id         String   @id @default(cuid())
+  actorId    String?
+  action     String
+  module     String
+  recordType String?
+  recordId   String?
+  summary    String
+  beforeData Json?
+  afterData  Json?
+  createdAt  DateTime @default(now())
+
+  actor User? @relation("ActivityActor", fields: [actorId], references: [id])
+
+  @@index([module])
+  @@index([actorId])
+  @@index([createdAt])
+}
+
+// ─── NOTES & TAGS ────────────────────────────────────────────
+
+model Note {
+  id        String   @id @default(cuid())
+  module    String
+  recordId  String
+  body      String   @db.Text
+  authorId  String?
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  author User? @relation("NoteAuthor", fields: [authorId], references: [id])
+
+  @@index([module, recordId])
+}
+
+model Tag {
+  id        String      @id @default(cuid())
+  name      String      @unique
+  color     String?
+  createdAt DateTime    @default(now())
+  records   RecordTag[]
+}
+
+model RecordTag {
+  id       String @id @default(cuid())
+  tagId    String
+  module   String
+  recordId String
+
+  tag Tag @relation(fields: [tagId], references: [id], onDelete: Cascade)
+
+  @@unique([tagId, module, recordId])
+  @@index([module, recordId])
+}
+
+// ─── PHASE 2: CAMPAIGNS ──────────────────────────────────────
+
+enum CampaignStatus {
+  planning
+  active
+  paused
+  completed
+  archived
+}
+
+model Campaign {
+  id           String         @id @default(cuid())
+  name         String
+  slug         String         @unique
+  type         String
+  status       CampaignStatus @default(planning)
+  description  String?        @db.Text
+  goals        String?        @db.Text
+  startDate    DateTime?
+  endDate      DateTime?
+  budget       Decimal?       @db.Decimal(10, 2)
+  spent        Decimal?       @db.Decimal(10, 2)
+  channels     Json?
+  reach        Int?
+  impressions  Int?
+  engagement   Int?
+  linkClicks   Int?
+  ownerId      String?
+  createdAt    DateTime       @default(now())
+  updatedAt    DateTime       @updatedAt
+
+  owner       User?        @relation("CampaignOwner", fields: [ownerId], references: [id])
+  socialPosts SocialPost[]
+
+  @@index([status])
+  @@index([ownerId])
+}
+
+// ─── PHASE 2: SOCIAL ─────────────────────────────────────────
+
+enum SocialPlatform {
+  instagram
+  tiktok
+  youtube
+  twitter
+  linkedin
+  facebook
+}
+
+enum SocialPostStatus {
+  draft
+  scheduled
+  published
+  archived
+}
+
+model SocialPost {
+  id           String           @id @default(cuid())
+  platform     SocialPlatform
+  content      String?          @db.Text
+  caption      String?          @db.Text
+  status       SocialPostStatus @default(draft)
+  scheduledAt  DateTime?
+  publishedAt  DateTime?
+  campaignId   String?
+  authorId     String?
+  likes        Int              @default(0)
+  comments     Int              @default(0)
+  shares       Int              @default(0)
+  views        Int              @default(0)
+  reach        Int              @default(0)
+  linkClicks   Int              @default(0)
+  createdAt    DateTime         @default(now())
+  updatedAt    DateTime         @updatedAt
+
+  campaign Campaign? @relation(fields: [campaignId], references: [id])
+  author   User?     @relation("SocialPostAuthor", fields: [authorId], references: [id])
+
+  @@index([platform])
+  @@index([status])
+  @@index([campaignId])
+}
+
+model SocialAccount {
+  id           String         @id @default(cuid())
+  platform     SocialPlatform
+  handle       String
+  displayName  String?
+  followers    Int            @default(0)
+  following    Int            @default(0)
+  engagement   Decimal?       @db.Decimal(5, 2)
+  profileUrl   String?
+  isConnected  Boolean        @default(true)
+  createdAt    DateTime       @default(now())
+  updatedAt    DateTime       @updatedAt
+
+  @@unique([platform, handle])
+}
+
+// ─── PHASE 2: OPERATIONS ─────────────────────────────────────
+
+enum TaskStatus {
+  open
+  in_progress
+  completed
+  cancelled
+}
+
+enum TaskPriority {
+  low
+  normal
+  high
+  urgent
+}
+
+model OperationTask {
+  id          String       @id @default(cuid())
+  title       String
+  description String?      @db.Text
+  status      TaskStatus   @default(open)
+  priority    TaskPriority @default(normal)
+  assigneeId  String?
+  dueDate     DateTime?
+  completedAt DateTime?
+  module      String?
+  notes       String?      @db.Text
+  createdAt   DateTime     @default(now())
+  updatedAt   DateTime     @updatedAt
+
+  assignee User? @relation("TaskAssignee", fields: [assigneeId], references: [id])
+
+  @@index([status])
+  @@index([priority])
+  @@index([assigneeId])
+}
+
+// ─── PHASE 2: EXPENSES ───────────────────────────────────────
+
+enum ExpenseStatus {
+  pending
+  approved
+  rejected
+  reimbursed
+}
+
+model Expense {
+  id           String        @id @default(cuid())
+  title        String
+  description  String?       @db.Text
+  amount       Decimal       @db.Decimal(10, 2)
+  category     String
+  costCenter   String?
+  vendor       String?
+  receiptUrl   String?
+  status       ExpenseStatus @default(pending)
+  requestedById String?
+  approvedById  String?
+  approvedAt    DateTime?
+  expenseDate   DateTime?
+  createdAt     DateTime     @default(now())
+  updatedAt     DateTime     @updatedAt
+
+  requestedBy User? @relation("ExpenseRequester", fields: [requestedById], references: [id])
+  approvedBy  User? @relation("ExpenseApprover", fields: [approvedById], references: [id])
+
+  @@index([status])
+  @@index([category])
+  @@index([requestedById])
+}
