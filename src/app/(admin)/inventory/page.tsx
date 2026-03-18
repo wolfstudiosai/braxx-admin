@@ -20,7 +20,6 @@ import {
 import {
   Download,
   SlidersHorizontal,
-  Truck,
   AlertTriangle,
   Package,
   ArrowDownCircle,
@@ -198,23 +197,23 @@ export default function InventoryPage() {
       <div className="flex items-end justify-between gap-4">
         <div>
           <div className="flex items-center gap-2 mb-1.5">
-            <span className="inline-flex items-center rounded bg-primary/10 px-2 py-0.5 text-[10px] font-mono font-medium tracking-wider text-primary uppercase">
+            <span className="inline-flex items-center rounded bg-foreground px-2 py-0.5 text-[9px] font-mono font-medium tracking-wider text-background uppercase">
               Real Time
             </span>
-            <span className="text-xs font-medium text-muted-foreground uppercase tracking-wider">
+            <span className="text-[10px] font-mono text-muted-foreground uppercase tracking-wider">
               System Tracking
             </span>
           </div>
-          <h1 className="text-xl font-light tracking-tight text-foreground">
-            Inventory <span className="text-muted-foreground">Grid</span>
+          <h1 className="text-sm font-mono font-medium uppercase tracking-wider text-foreground">
+            Inventory
           </h1>
         </div>
         <div className="flex items-center gap-2">
-          <Button size="sm" className="rounded-full text-xs font-medium h-8 gap-1.5">
+          <Button size="sm" className="rounded text-xs font-medium h-8 gap-1.5">
             <SlidersHorizontal className="h-3.5 w-3.5" />
             Adjust Stock
           </Button>
-          <Button variant="outline" size="sm" className="rounded-full text-xs font-medium h-8 gap-1.5">
+          <Button variant="outline" size="sm" className="rounded text-xs font-medium h-8 gap-1.5">
             <Download className="h-3.5 w-3.5" />
             Export
           </Button>
@@ -239,53 +238,38 @@ export default function InventoryPage() {
 
       {/* ── Metric Strip ── */}
       <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 gap-2">
-        <div className="flex items-center gap-3 rounded-xl border border-border bg-card px-3 py-2.5">
-          <div className="h-8 w-8 rounded-lg bg-violet-500/10 flex items-center justify-center shrink-0">
-            <Package className="h-4 w-4 text-violet-500" />
-          </div>
+        <div className="flex items-center gap-3 rounded-lg border border-border bg-card px-3 py-2.5">
           <div className="min-w-0">
-            <span className="text-[10px] text-muted-foreground uppercase tracking-wider block">Total Stock</span>
-            <span className="text-sm font-semibold tabular-nums text-foreground">150</span>
+            <span className="text-[9px] font-mono text-muted-foreground uppercase tracking-wider block">Total Stock</span>
+            <span className="text-sm font-mono font-semibold tabular-nums text-foreground">150</span>
           </div>
         </div>
-        <div className="flex items-center gap-3 rounded-xl card-gradient-violet px-3 py-2.5">
-          <div className="h-8 w-8 rounded-lg bg-blue-500/10 flex items-center justify-center shrink-0">
-            <Package className="h-4 w-4 text-blue-500" />
-          </div>
+        <div className="flex items-center gap-3 rounded-lg border border-border bg-card px-3 py-2.5">
           <div className="min-w-0">
-            <span className="text-[10px] text-muted-foreground uppercase tracking-wider block">Warehouse</span>
-            <span className="text-sm font-semibold tabular-nums text-foreground">142</span>
+            <span className="text-[9px] font-mono text-muted-foreground uppercase tracking-wider block">Warehouse</span>
+            <span className="text-sm font-mono font-semibold tabular-nums text-foreground">142</span>
           </div>
         </div>
-        <div className="flex items-center gap-3 rounded-xl border border-border bg-card px-3 py-2.5">
-          <div className="h-8 w-8 rounded-lg bg-emerald-500/10 flex items-center justify-center shrink-0">
-            <Package className="h-4 w-4 text-emerald-500" />
-          </div>
+        <div className="flex items-center gap-3 rounded-lg border border-border bg-card px-3 py-2.5">
           <div className="min-w-0">
-            <span className="text-[10px] text-muted-foreground uppercase tracking-wider block">Dealer</span>
-            <span className="text-sm font-semibold tabular-nums text-foreground">8</span>
+            <span className="text-[9px] font-mono text-muted-foreground uppercase tracking-wider block">Dealer</span>
+            <span className="text-sm font-mono font-semibold tabular-nums text-foreground">8</span>
           </div>
         </div>
-        <div className="flex items-center gap-3 rounded-xl card-gradient-rose px-3 py-2.5">
-          <div className="h-8 w-8 rounded-lg bg-red-500/10 flex items-center justify-center shrink-0 pulse-live">
-            <AlertTriangle className="h-4 w-4 text-red-500" />
-          </div>
+        <div className="flex items-center gap-3 rounded-lg border border-border bg-card px-3 py-2.5">
           <div className="min-w-0">
-            <span className="text-[10px] text-muted-foreground uppercase tracking-wider block">Low Stock</span>
+            <span className="text-[9px] font-mono text-muted-foreground uppercase tracking-wider block">Low Stock</span>
             <div className="flex items-center gap-1.5">
-              <span className="text-sm font-semibold tabular-nums text-primary">3</span>
+              <span className="text-sm font-mono font-semibold tabular-nums text-primary">3</span>
               <span className="text-[10px] text-red-500 font-medium">alert</span>
             </div>
           </div>
         </div>
-        <div className="flex items-center gap-3 rounded-xl card-gradient-blue px-3 py-2.5">
-          <div className="h-8 w-8 rounded-lg bg-blue-500/10 flex items-center justify-center shrink-0">
-            <Truck className="h-4 w-4 text-blue-500" />
-          </div>
+        <div className="flex items-center gap-3 rounded-lg border border-border bg-card px-3 py-2.5">
           <div className="min-w-0">
-            <span className="text-[10px] text-muted-foreground uppercase tracking-wider block">Incoming</span>
+            <span className="text-[9px] font-mono text-muted-foreground uppercase tracking-wider block">Incoming</span>
             <div className="flex items-center gap-1.5">
-              <span className="text-sm font-semibold tabular-nums text-foreground">62</span>
+              <span className="text-sm font-mono font-semibold tabular-nums text-foreground">62</span>
               <span className="h-1.5 w-1.5 rounded-full bg-blue-500 pulse-live" />
             </div>
           </div>
@@ -304,11 +288,11 @@ export default function InventoryPage() {
       {/* ── Charts Row ── */}
       <div className="grid grid-cols-1 lg:grid-cols-3 gap-3">
         {/* Stock Level Bar Chart */}
-        <div className="lg:col-span-2 bento-card p-5 animate-in stagger-1 animate-shimmer">
+        <div className="lg:col-span-2 eng-card p-5 animate-in stagger-1">
           <div className="flex items-center justify-between mb-4">
             <div>
-              <span className="text-xs font-medium text-muted-foreground uppercase tracking-wider block">Stock Levels</span>
-              <h3 className="text-base font-bold text-foreground mt-0.5">By Model &amp; Location</h3>
+              <span className="text-[10px] font-mono text-muted-foreground uppercase tracking-wider block">Stock Levels</span>
+              <h3 className="text-sm font-medium text-foreground mt-0.5">By Model &amp; Location</h3>
             </div>
             <div className="flex items-center gap-3">
               <div className="flex items-center gap-1.5">
@@ -366,9 +350,9 @@ export default function InventoryPage() {
         </div>
 
         {/* Stock Distribution Ring — Dark Card */}
-        <div className="bento-card-dark p-5 animate-in stagger-2">
-          <span className="text-xs font-medium text-muted-foreground uppercase tracking-wider">Distribution Mix</span>
-          <div className="relative h-[200px] mt-2 animate-float">
+        <div className="eng-card-dark p-5 animate-in stagger-2">
+          <span className="text-[10px] font-mono text-muted-foreground uppercase tracking-wider">Distribution Mix</span>
+          <div className="relative h-[200px] mt-2">
             <ResponsiveContainer width="100%" height="100%">
               <PieChart>
                 <Pie
@@ -408,7 +392,7 @@ export default function InventoryPage() {
       {/* ── Stock Alerts ── */}
       <div className="flex flex-col lg:flex-row gap-4">
         <div className="lg:w-[200px] xl:w-[220px] shrink-0">
-          <h2 className="text-sm font-semibold text-foreground">
+          <h2 className="text-xs font-mono font-medium uppercase tracking-wider text-foreground">
             Stock Alerts
           </h2>
           <p className="text-xs text-muted-foreground mt-2">
@@ -422,7 +406,7 @@ export default function InventoryPage() {
               <div
                 key={alert.product}
                 className={cn(
-                  "bento-card p-4 space-y-3 animate-in",
+                  "eng-card p-4 space-y-3 animate-in",
                   i < 3 && `stagger-${i + 1}`,
                   isCritical && "border-red-300 dark:border-red-800/50",
                 )}
@@ -442,7 +426,7 @@ export default function InventoryPage() {
                   </span>
                   <span className="text-muted-foreground">threshold: {alert.threshold}</span>
                 </div>
-                <Button variant={isCritical ? "default" : "outline"} size="sm" className="w-full h-7 text-xs font-medium rounded-full">
+                <Button variant={isCritical ? "default" : "outline"} size="sm" className="w-full h-7 text-xs font-medium rounded">
                   Reorder Now
                 </Button>
               </div>
@@ -454,11 +438,11 @@ export default function InventoryPage() {
       {/* ── Bottom Grid ── */}
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-3">
         {/* Movement Stream — spans 2 cols */}
-        <div className="md:col-span-2 bento-card p-5 animate-in stagger-1 bg-mesh-gradient">
+        <div className="md:col-span-2 eng-card p-5 animate-in stagger-1">
           <div className="flex items-center justify-between mb-4">
             <div>
-              <span className="text-xs font-medium text-muted-foreground uppercase tracking-wider block">Movement Stream</span>
-              <h3 className="text-base font-bold text-foreground mt-0.5">Recent Activity</h3>
+              <span className="text-[10px] font-mono text-muted-foreground uppercase tracking-wider block">Movement Stream</span>
+              <h3 className="text-sm font-medium text-foreground mt-0.5">Recent Activity</h3>
             </div>
           </div>
           <div className="relative">
@@ -496,9 +480,9 @@ export default function InventoryPage() {
         </div>
 
         {/* Location Distribution — Dark Card */}
-        <div className="bento-card-dark p-5 animate-in stagger-2 relative overflow-hidden">
-          <div className="absolute inset-0 bg-dots-pattern opacity-20 pointer-events-none" />
-          <span className="relative text-xs font-medium text-muted-foreground uppercase tracking-wider block mb-3">Location Distribution</span>
+        <div className="eng-card-dark p-5 animate-in stagger-2 relative overflow-hidden">
+          <div className="absolute inset-0 opacity-20 pointer-events-none" />
+          <span className="relative text-[10px] font-mono text-muted-foreground uppercase tracking-wider block mb-3">Location Distribution</span>
           <div className="relative space-y-3">
             <div className="flex h-6 w-full rounded-lg overflow-hidden">
               {LOCATIONS.map((loc) => (
@@ -525,8 +509,8 @@ export default function InventoryPage() {
         </div>
 
         {/* Incoming Shipments — Dark Card */}
-        <div className="bento-card-dark p-5 animate-in stagger-3 border-blue-500/30">
-          <span className="text-xs font-medium text-muted-foreground uppercase tracking-wider block mb-3">Incoming Shipments</span>
+        <div className="eng-card-dark p-5 animate-in stagger-3 border-blue-500/30">
+          <span className="text-[10px] font-mono text-muted-foreground uppercase tracking-wider block mb-3">Incoming Shipments</span>
           <div className="space-y-3">
             {INCOMING.map((ship) => (
               <div key={ship.ref} className="space-y-2 pb-3 border-b border-border last:border-0">

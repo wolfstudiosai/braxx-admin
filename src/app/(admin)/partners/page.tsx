@@ -9,7 +9,6 @@ import { Avatar, AvatarFallback } from "@/components/ui/avatar";
 import {
   MapPin,
   ArrowUpRight,
-  Users,
   Plus,
   Download,
 } from "lucide-react";
@@ -178,23 +177,23 @@ export default function PartnersPage() {
       <div className="flex items-end justify-between gap-4">
         <div>
           <div className="flex items-center gap-2 mb-1.5">
-            <span className="inline-flex items-center rounded bg-primary/10 px-2 py-0.5 text-xs font-medium tracking-wider text-primary uppercase">
+            <span className="inline-flex items-center rounded bg-foreground px-2 py-0.5 text-[9px] font-mono font-medium tracking-wider text-background uppercase">
               NETWORK
             </span>
             <span className="text-xs font-medium text-muted-foreground tracking-wider uppercase">
               Relationship Mgmt
             </span>
           </div>
-          <h1 className="text-xl font-light tracking-tight text-foreground">
-            Partner <span className="text-muted-foreground">Network</span>
+          <h1 className="text-sm font-mono font-medium uppercase tracking-wider text-foreground">
+            Partner
           </h1>
         </div>
         <div className="flex items-center gap-2">
-          <Button variant="outline" size="sm" className="text-xs font-medium rounded-full h-8 gap-1.5">
+          <Button variant="outline" size="sm" className="text-xs font-medium rounded h-8 gap-1.5">
             <Download className="h-3.5 w-3.5" />
             Export
           </Button>
-          <Button size="sm" className="text-xs font-medium rounded-full h-8 gap-1.5">
+          <Button size="sm" className="text-xs font-medium rounded h-8 gap-1.5">
             <Plus className="h-3.5 w-3.5" />
             Add Partner
           </Button>
@@ -203,38 +202,35 @@ export default function PartnersPage() {
 
       {/* ── Metric Strip ── */}
       <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 gap-2">
-        <div className="flex items-center gap-3 rounded-xl card-gradient-violet px-3 py-2.5">
-          <div className="h-8 w-8 rounded-lg bg-violet-500/10 flex items-center justify-center shrink-0">
-            <Users className="h-4 w-4 text-violet-500" />
-          </div>
+        <div className="flex items-center gap-3 rounded-lg border border-border bg-card px-3 py-2.5">
           <div className="min-w-0">
-            <span className="text-[10px] text-muted-foreground uppercase tracking-wider block">Total</span>
-            <span className="text-sm font-semibold tabular-nums text-primary">12</span>
+            <span className="text-[9px] font-mono text-muted-foreground uppercase tracking-wider block">Total</span>
+            <span className="text-sm font-mono font-semibold tabular-nums text-primary">12</span>
           </div>
         </div>
-        <div className="flex items-center gap-3 rounded-xl card-gradient-emerald px-3 py-2.5">
+        <div className="flex items-center gap-3 rounded-lg border border-border bg-card px-3 py-2.5">
           <div className="min-w-0">
-            <span className="text-[10px] text-muted-foreground uppercase tracking-wider block">Active</span>
-            <span className="text-sm font-semibold tabular-nums text-emerald-600">8</span>
+            <span className="text-[9px] font-mono text-muted-foreground uppercase tracking-wider block">Active</span>
+            <span className="text-sm font-mono font-semibold tabular-nums text-emerald-600">8</span>
           </div>
         </div>
-        <div className="flex items-center gap-3 rounded-xl card-gradient-amber px-3 py-2.5">
+        <div className="flex items-center gap-3 rounded-lg border border-border bg-card px-3 py-2.5">
           <div className="min-w-0">
-            <span className="text-[10px] text-muted-foreground uppercase tracking-wider block">Onboarding</span>
-            <span className="text-sm font-semibold tabular-nums text-amber-500">3</span>
+            <span className="text-[9px] font-mono text-muted-foreground uppercase tracking-wider block">Onboarding</span>
+            <span className="text-sm font-mono font-semibold tabular-nums text-amber-500">3</span>
           </div>
         </div>
-        <div className="flex items-center gap-3 rounded-xl border border-border bg-card px-3 py-2.5">
+        <div className="flex items-center gap-3 rounded-lg border border-border bg-card px-3 py-2.5">
           <div className="min-w-0">
-            <span className="text-[10px] text-muted-foreground uppercase tracking-wider block">Pending</span>
-            <span className="text-sm font-semibold tabular-nums text-foreground">4</span>
+            <span className="text-[9px] font-mono text-muted-foreground uppercase tracking-wider block">Pending</span>
+            <span className="text-sm font-mono font-semibold tabular-nums text-foreground">4</span>
           </div>
         </div>
-        <div className="flex items-center gap-3 rounded-xl card-gradient-blue px-3 py-2.5">
+        <div className="flex items-center gap-3 rounded-lg border border-border bg-card px-3 py-2.5">
           <div className="min-w-0">
-            <span className="text-[10px] text-muted-foreground uppercase tracking-wider block">Revenue QTD</span>
+            <span className="text-[9px] font-mono text-muted-foreground uppercase tracking-wider block">Revenue QTD</span>
             <div className="flex items-center gap-1.5">
-              <span className="text-sm font-semibold tabular-nums text-foreground">$186K</span>
+              <span className="text-sm font-mono font-semibold tabular-nums text-foreground">$186K</span>
               <span className="text-[10px] text-emerald-600 font-medium">+24%</span>
             </div>
           </div>
@@ -242,7 +238,7 @@ export default function PartnersPage() {
       </div>
 
       {/* ── Partner Revenue Chart ── */}
-      <div className="animate-shimmer">
+      <div>
         <ModuleChart
           title="Partner Revenue"
           subtitle="Quarterly revenue by partner"
@@ -257,7 +253,7 @@ export default function PartnersPage() {
       <div className="flex flex-col lg:flex-row gap-4 mt-2">
         <div className="lg:w-[200px] xl:w-[220px] shrink-0 flex flex-col justify-between">
           <div>
-            <h2 className="text-sm font-semibold text-foreground">
+            <h2 className="text-xs font-mono font-medium uppercase tracking-wider text-foreground">
               Network
             </h2>
             <p className="text-xs text-muted-foreground mt-2 leading-relaxed">
@@ -270,9 +266,9 @@ export default function PartnersPage() {
                 key={region}
                 onClick={() => setRegionFilter(region)}
                 className={cn(
-                  "px-3 py-1 rounded-full text-[10px] font-mono font-medium uppercase tracking-wider border transition-all",
+                  "px-3 py-1 rounded text-[10px] font-mono font-medium uppercase tracking-wider border transition-all",
                   regionFilter === region
-                    ? "bg-primary text-primary-foreground border-primary"
+                    ? "bg-foreground text-background border-foreground"
                     : "bg-transparent text-muted-foreground border-border hover:border-foreground/30"
                 )}
               >

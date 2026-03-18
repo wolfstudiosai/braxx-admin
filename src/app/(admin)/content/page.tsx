@@ -131,23 +131,23 @@ export default function ContentPage() {
       <div className="flex items-end justify-between gap-4">
         <div>
           <div className="flex items-center gap-2 mb-1.5">
-            <span className="inline-flex items-center rounded bg-primary/10 px-2 py-0.5 text-xs font-medium tracking-wider text-primary uppercase">
+            <span className="inline-flex items-center rounded bg-foreground px-2 py-0.5 text-[9px] font-mono font-medium tracking-wider text-background uppercase">
               CREATIVE
             </span>
             <span className="text-xs font-medium text-muted-foreground tracking-wider uppercase">
               Asset Management
             </span>
           </div>
-          <h1 className="text-xl font-light tracking-tight text-foreground">
-            Content <span className="text-muted-foreground">Hub</span>
+          <h1 className="text-sm font-mono font-medium uppercase tracking-wider text-foreground">
+            Content
           </h1>
         </div>
         <div className="flex items-center gap-2">
-          <Button variant="outline" size="sm" className="text-xs font-medium rounded-full h-8 gap-1.5">
+          <Button variant="outline" size="sm" className="text-xs font-medium rounded h-8 gap-1.5">
             <Upload className="h-3.5 w-3.5" />
             Upload
           </Button>
-          <Button size="sm" className="text-xs font-medium rounded-full h-8 gap-1.5">
+          <Button size="sm" className="text-xs font-medium rounded h-8 gap-1.5">
             <Plus className="h-3.5 w-3.5" />
             New Collection
           </Button>
@@ -156,43 +156,40 @@ export default function ContentPage() {
 
       {/* ── Metric Strip ── */}
       <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 gap-2">
-        <div className="flex items-center gap-3 rounded-xl card-gradient-violet px-3 py-2.5">
-          <div className="h-8 w-8 rounded-lg bg-violet-500/10 flex items-center justify-center shrink-0">
-            <Layers className="h-4 w-4 text-violet-500" />
-          </div>
+        <div className="flex items-center gap-3 rounded-lg border border-border bg-card px-3 py-2.5">
           <div className="min-w-0">
-            <span className="text-[10px] text-muted-foreground uppercase tracking-wider block">Total Assets</span>
-            <span className="text-sm font-semibold tabular-nums text-primary">156</span>
+            <span className="text-[9px] font-mono text-muted-foreground uppercase tracking-wider block">Total Assets</span>
+            <span className="text-sm font-mono font-semibold tabular-nums text-primary">156</span>
           </div>
         </div>
-        <div className="flex items-center gap-3 rounded-xl card-gradient-emerald px-3 py-2.5">
+        <div className="flex items-center gap-3 rounded-lg border border-border bg-card px-3 py-2.5">
           <div className="min-w-0">
-            <span className="text-[10px] text-muted-foreground uppercase tracking-wider block">Published</span>
+            <span className="text-[9px] font-mono text-muted-foreground uppercase tracking-wider block">Published</span>
             <div className="flex items-center gap-1.5">
-              <span className="text-sm font-semibold tabular-nums text-emerald-600">89</span>
+              <span className="text-sm font-mono font-semibold tabular-nums text-emerald-600">89</span>
               <span className="text-[10px] text-emerald-600 font-medium">57%</span>
             </div>
           </div>
         </div>
-        <div className="flex items-center gap-3 rounded-xl border border-border bg-card px-3 py-2.5">
+        <div className="flex items-center gap-3 rounded-lg border border-border bg-card px-3 py-2.5">
           <div className="min-w-0">
-            <span className="text-[10px] text-muted-foreground uppercase tracking-wider block">Collections</span>
-            <span className="text-sm font-semibold tabular-nums text-foreground">8</span>
+            <span className="text-[9px] font-mono text-muted-foreground uppercase tracking-wider block">Collections</span>
+            <span className="text-sm font-mono font-semibold tabular-nums text-foreground">8</span>
           </div>
         </div>
-        <div className="flex items-center gap-3 rounded-xl border border-border bg-card px-3 py-2.5">
+        <div className="flex items-center gap-3 rounded-lg border border-border bg-card px-3 py-2.5">
           <div className="min-w-0">
-            <span className="text-[10px] text-muted-foreground uppercase tracking-wider block">Storage</span>
+            <span className="text-[9px] font-mono text-muted-foreground uppercase tracking-wider block">Storage</span>
             <div className="flex items-center gap-1.5">
-              <span className="text-sm font-semibold tabular-nums text-foreground">2.4 GB</span>
+              <span className="text-sm font-mono font-semibold tabular-nums text-foreground">2.4 GB</span>
               <span className="text-[10px] text-muted-foreground">of 10 GB</span>
             </div>
           </div>
         </div>
-        <div className="flex items-center gap-3 rounded-xl card-gradient-blue px-3 py-2.5">
+        <div className="flex items-center gap-3 rounded-lg border border-border bg-card px-3 py-2.5">
           <div className="min-w-0">
-            <span className="text-[10px] text-muted-foreground uppercase tracking-wider block">Featured</span>
-            <span className="text-sm font-semibold tabular-nums text-foreground">{"Spring '26"}</span>
+            <span className="text-[9px] font-mono text-muted-foreground uppercase tracking-wider block">Featured</span>
+            <span className="text-sm font-mono font-semibold tabular-nums text-foreground">{"Spring '26"}</span>
           </div>
         </div>
       </div>
@@ -220,9 +217,9 @@ export default function ContentPage() {
               <button
                 key={chip}
                 className={cn(
-                  "rounded-full px-3 py-1.5 text-[10px] font-medium uppercase tracking-wider transition-colors",
+                  "rounded px-3 py-1.5 text-[10px] font-medium uppercase tracking-wider transition-colors",
                   i === 0
-                    ? "bg-primary text-primary-foreground"
+                    ? "bg-foreground text-background"
                     : "bg-secondary text-muted-foreground hover:text-foreground hover:bg-secondary/80"
                 )}
               >
@@ -233,14 +230,14 @@ export default function ContentPage() {
         </div>
 
         {/* Pinned Assets */}
-        <div className="flex gap-3 overflow-x-auto pb-1 scrollbar-thin -mx-1 px-1 bg-dots-pattern rounded-xl py-3">
+        <div className="flex gap-3 overflow-x-auto pb-1 scrollbar-thin -mx-1 px-1 rounded-lg py-3 border border-border">
           {PINNED.map((asset) => {
             const config = TYPE_CONFIG[asset.type];
             const Icon = config.icon;
             return (
               <div
                 key={asset.title}
-                className="bento-card p-3 min-w-[200px] shrink-0 flex items-center gap-3 cursor-pointer hover:shadow-md transition-all"
+                className="eng-card p-3 min-w-[200px] shrink-0 flex items-center gap-3 cursor-pointer hover:shadow-md transition-all"
               >
                 <div
                   className={cn(
@@ -266,10 +263,10 @@ export default function ContentPage() {
       </div>
 
       {/* ── Collections Section ── */}
-      <div className="flex flex-col lg:flex-row gap-4 bg-mesh-gradient rounded-2xl p-4">
+      <div className="flex flex-col lg:flex-row gap-4 rounded-lg border border-border p-4">
         <div className="lg:w-[200px] xl:w-[220px] shrink-0 flex flex-col justify-between">
           <div>
-            <h2 className="text-sm font-semibold text-foreground">
+            <h2 className="text-xs font-mono font-medium uppercase tracking-wider text-foreground">
               Collections
             </h2>
             <p className="text-xs text-muted-foreground mt-2 leading-relaxed">
@@ -287,7 +284,7 @@ export default function ContentPage() {
               <div
                 key={col.name}
                 className={cn(
-                  "bento-card p-4 min-w-[200px] shrink-0 cursor-pointer transition-all duration-300",
+                  "eng-card p-4 min-w-[200px] shrink-0 cursor-pointer transition-all duration-300",
                   "hover:shadow-md hover:-translate-y-1",
                   "animate-in",
                   i < 6 && `stagger-${i + 1}`
@@ -329,7 +326,7 @@ export default function ContentPage() {
       {/* ── Asset Grid ── */}
       <section>
         <div className="flex items-center justify-between mb-4">
-          <span className="text-xs font-medium text-muted-foreground uppercase tracking-wider">Recent Assets</span>
+          <span className="text-[10px] font-mono font-medium text-muted-foreground uppercase tracking-wider">Recent Assets</span>
           <span className="text-xs text-muted-foreground">{ASSETS.length} items</span>
         </div>
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-3">
@@ -340,7 +337,7 @@ export default function ContentPage() {
               <div
                 key={asset.title}
                 className={cn(
-                  "bento-card group cursor-pointer transition-all duration-300",
+                  "eng-card group cursor-pointer transition-all duration-300",
                   "hover:shadow-lg hover:scale-[1.02] hover:-translate-y-0.5",
                   "animate-in overflow-hidden relative",
                   i < 6 && `stagger-${i + 1}`

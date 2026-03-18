@@ -130,19 +130,19 @@ export default function AppActivityPage() {
       <div className="flex items-end justify-between gap-4">
         <div>
           <div className="flex items-center gap-2 mb-1.5">
-            <span className="inline-flex items-center rounded bg-primary/10 px-2 py-0.5 text-xs font-medium tracking-wider text-primary uppercase">
+            <span className="inline-flex items-center rounded bg-foreground px-2 py-0.5 text-[9px] font-mono font-medium tracking-wider text-background uppercase">
               SYSTEM
             </span>
             <span className="text-xs font-medium text-muted-foreground tracking-wider uppercase">
               All Modules
             </span>
           </div>
-          <h1 className="text-xl font-light tracking-tight text-foreground">
-            Activity <span className="text-muted-foreground">Log</span>
+          <h1 className="text-sm font-mono font-medium uppercase tracking-wider text-foreground">
+            Activity
           </h1>
         </div>
         <div className="flex items-center gap-2">
-          <Button variant="outline" size="sm" className="text-xs font-medium rounded-full h-8 gap-1.5">
+          <Button variant="outline" size="sm" className="text-xs font-medium rounded h-8 gap-1.5">
             <Download className="h-3.5 w-3.5" />
             Export Log
           </Button>
@@ -151,28 +151,28 @@ export default function AppActivityPage() {
 
       {/* ── Metric Strip ── */}
       <div className="grid grid-cols-2 sm:grid-cols-4 gap-2">
-        <div className="flex items-center gap-3 rounded-xl card-gradient-violet px-3 py-2.5">
+        <div className="flex items-center gap-3 rounded-lg border border-border bg-card px-3 py-2.5">
           <div className="min-w-0">
-            <span className="text-[10px] text-muted-foreground uppercase tracking-wider block">Total Events</span>
-            <span className="text-sm font-semibold tabular-nums text-primary">{activities.length}</span>
+            <span className="text-[9px] font-mono text-muted-foreground uppercase tracking-wider block">Total Events</span>
+            <span className="text-sm font-mono font-semibold tabular-nums text-primary">{activities.length}</span>
           </div>
         </div>
-        <div className="flex items-center gap-3 rounded-xl border border-border bg-card px-3 py-2.5">
+        <div className="flex items-center gap-3 rounded-lg border border-border bg-card px-3 py-2.5">
           <div className="min-w-0">
-            <span className="text-[10px] text-muted-foreground uppercase tracking-wider block">Modules</span>
-            <span className="text-sm font-semibold tabular-nums text-foreground">{Object.keys(moduleCounts).length}</span>
+            <span className="text-[9px] font-mono text-muted-foreground uppercase tracking-wider block">Modules</span>
+            <span className="text-sm font-mono font-semibold tabular-nums text-foreground">{Object.keys(moduleCounts).length}</span>
           </div>
         </div>
-        <div className="flex items-center gap-3 rounded-xl card-gradient-emerald px-3 py-2.5">
+        <div className="flex items-center gap-3 rounded-lg border border-border bg-card px-3 py-2.5">
           <div className="min-w-0">
-            <span className="text-[10px] text-muted-foreground uppercase tracking-wider block">System</span>
-            <span className="text-sm font-semibold tabular-nums text-emerald-600">{activities.filter(a => a.actor === "System").length}</span>
+            <span className="text-[9px] font-mono text-muted-foreground uppercase tracking-wider block">System</span>
+            <span className="text-sm font-mono font-semibold tabular-nums text-emerald-600">{activities.filter(a => a.actor === "System").length}</span>
           </div>
         </div>
-        <div className="flex items-center gap-3 rounded-xl border border-border bg-card px-3 py-2.5">
+        <div className="flex items-center gap-3 rounded-lg border border-border bg-card px-3 py-2.5">
           <div className="min-w-0">
-            <span className="text-[10px] text-muted-foreground uppercase tracking-wider block">Active Users</span>
-            <span className="text-sm font-semibold tabular-nums text-foreground">{actorOptions.length - 1}</span>
+            <span className="text-[9px] font-mono text-muted-foreground uppercase tracking-wider block">Active Users</span>
+            <span className="text-sm font-mono font-semibold tabular-nums text-foreground">{actorOptions.length - 1}</span>
           </div>
         </div>
       </div>
@@ -190,9 +190,9 @@ export default function AppActivityPage() {
         <button
           onClick={() => setModuleFilter("all")}
           className={cn(
-            "px-3 py-1 rounded-full text-[10px] font-medium uppercase tracking-wider border transition-all",
+            "px-3 py-1 rounded text-[10px] font-medium uppercase tracking-wider border transition-all",
             moduleFilter === "all"
-              ? "bg-primary text-primary-foreground border-primary"
+              ? "bg-foreground text-background border-foreground"
               : "bg-transparent text-muted-foreground border-border hover:border-foreground/30"
           )}
         >
@@ -205,9 +205,9 @@ export default function AppActivityPage() {
               key={mod}
               onClick={() => setModuleFilter(moduleFilter === mod ? "all" : mod)}
               className={cn(
-                "px-3 py-1 rounded-full text-[10px] font-medium uppercase tracking-wider border transition-all flex items-center gap-1.5",
+                "px-3 py-1 rounded text-[10px] font-medium uppercase tracking-wider border transition-all flex items-center gap-1.5",
                 moduleFilter === mod
-                  ? "bg-primary text-primary-foreground border-primary"
+                  ? "bg-foreground text-background border-foreground"
                   : "bg-transparent text-muted-foreground border-border hover:border-foreground/30"
               )}
             >
@@ -246,7 +246,7 @@ export default function AppActivityPage() {
           </div>
 
           {/* Timeline Card */}
-          <div className="rounded-xl border border-border bg-card bg-mesh-gradient overflow-hidden transition-shadow">
+          <div className="rounded-xl border border-border bg-card overflow-hidden transition-shadow">
             <div className="divide-y divide-border">
               {filtered.map((activity) => {
                 const modColor = MODULE_COLORS[activity.module];
@@ -310,8 +310,8 @@ export default function AppActivityPage() {
         {/* Sidebar */}
         <div className="space-y-3">
           {/* Activity by Module — dark card */}
-          <div className="bento-card-dark p-5 animate-in stagger-1 bg-dots-pattern">
-            <span className="text-xs font-medium text-muted-foreground uppercase tracking-wider">Activity By Module</span>
+          <div className="eng-card-dark p-5 animate-in stagger-1">
+            <span className="text-[10px] font-mono font-medium text-muted-foreground uppercase tracking-wider">Activity By Module</span>
             <div className="space-y-2.5 mt-3">
               {Object.entries(moduleCounts)
                 .sort(([, a], [, b]) => b - a)
@@ -344,8 +344,8 @@ export default function AppActivityPage() {
           </div>
 
           {/* Most Active — dark card */}
-          <div className="bento-card-dark p-5 animate-in stagger-2">
-            <span className="text-xs font-medium text-muted-foreground uppercase tracking-wider">Most Active</span>
+          <div className="eng-card-dark p-5 animate-in stagger-2">
+            <span className="text-[10px] font-mono font-medium text-muted-foreground uppercase tracking-wider">Most Active</span>
             <div className="space-y-3 mt-3">
               {MOST_ACTIVE.map((user) => (
                 <div key={user.name} className="flex items-center gap-2.5">
@@ -371,9 +371,9 @@ export default function AppActivityPage() {
           </div>
 
           {/* System Events — dark card */}
-          <div className="bento-card-dark p-5 animate-in stagger-3">
+          <div className="eng-card-dark p-5 animate-in stagger-3">
             <div className="flex items-center justify-between mb-3">
-              <span className="text-xs font-medium text-muted-foreground uppercase tracking-wider">System Events</span>
+              <span className="text-[10px] font-mono font-medium text-muted-foreground uppercase tracking-wider">System Events</span>
               <span className="text-xs text-muted-foreground">Automated</span>
             </div>
             <div className="space-y-2.5">

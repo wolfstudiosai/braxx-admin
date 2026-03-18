@@ -265,23 +265,23 @@ export default function PerformancePage() {
       <div className="flex items-end justify-between gap-4 animate-in stagger-1">
         <div>
           <div className="flex items-center gap-2 mb-1.5">
-            <span className="inline-flex items-center rounded bg-primary/10 px-2 py-0.5 text-[10px] font-mono font-medium tracking-wider text-primary uppercase">
+            <span className="inline-flex items-center rounded bg-foreground px-2 py-0.5 text-[9px] font-mono font-medium tracking-wider text-background uppercase">
               Live
             </span>
             <span className="text-[10px] font-mono text-muted-foreground tracking-wider uppercase">
               Executive Overview
             </span>
           </div>
-          <h1 className="text-xl font-light tracking-tight text-foreground">
-            Performance <span className="text-muted-foreground">Grid</span>
+          <h1 className="text-sm font-mono font-medium uppercase tracking-wider text-foreground">
+            Performance
           </h1>
         </div>
         <div className="flex items-center gap-2">
-          <Button variant="outline" size="sm" className="rounded-full text-xs font-medium h-8">
+          <Button variant="outline" size="sm" className="rounded text-xs font-medium h-8">
             <Download className="mr-1.5 h-3.5 w-3.5" />
             Export
           </Button>
-          <span className="inline-flex items-center rounded-full border border-border bg-muted/50 px-3 py-1 text-xs font-medium text-muted-foreground">
+          <span className="inline-flex items-center rounded border border-border bg-muted/50 px-3 py-1 text-xs font-medium text-muted-foreground">
             Last 30 days
           </span>
         </div>
@@ -290,14 +290,11 @@ export default function PerformancePage() {
       {/* ── Metric Strip ── */}
       <div className="grid grid-cols-2 sm:grid-cols-4 gap-2">
         {heroMetrics.map((m) => (
-          <div key={m.label} className={cn("flex items-center gap-3 rounded-xl border px-3 py-2.5", m.label === "Revenue" ? "card-gradient-violet" : m.label === "Conversion" && !m.positive ? "card-gradient-rose" : "border-border bg-card")}>
-            <div className={cn("h-8 w-8 rounded-lg flex items-center justify-center shrink-0", `${m.accent.replace('text-', 'bg-')}/10`)}>
-              <m.icon className={cn("h-4 w-4", m.accent)} />
-            </div>
+          <div key={m.label} className="flex items-center gap-3 rounded-lg border border-border bg-card px-3 py-2.5">
             <div className="min-w-0">
-              <span className="text-[10px] text-muted-foreground uppercase tracking-wider block">{m.label}</span>
+              <span className="text-[9px] font-mono text-muted-foreground uppercase tracking-wider block">{m.label}</span>
               <div className="flex items-center gap-1.5">
-                <span className={cn("text-sm font-semibold tabular-nums", m.label === "Revenue" ? "text-primary" : "text-foreground")}>{m.value}</span>
+                <span className={cn("text-sm font-mono font-semibold tabular-nums", m.label === "Revenue" ? "text-primary" : "text-foreground")}>{m.value}</span>
                 <span className={cn("text-[10px] font-medium", m.positive ? "text-emerald-600" : "text-red-500")}>{m.change}</span>
               </div>
             </div>
@@ -315,11 +312,11 @@ export default function PerformancePage() {
 
       {/* ── Charts Row ──────────────────────────────────────── */}
       <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-3">
-        <div className="sm:col-span-2 lg:col-span-2 bento-card animate-shimmer p-5 animate-in stagger-1">
+        <div className="sm:col-span-2 lg:col-span-2 eng-card p-5 animate-in stagger-1">
           <div className="mb-4 flex items-center justify-between">
             <div>
-              <span className="text-xs font-medium text-muted-foreground uppercase tracking-wider block">Revenue Trend</span>
-              <h3 className="text-base font-bold text-foreground mt-0.5">Monthly Revenue</h3>
+              <span className="text-[10px] font-mono text-muted-foreground uppercase tracking-wider block">Revenue Trend</span>
+              <h3 className="text-sm font-medium text-foreground mt-0.5">Monthly Revenue</h3>
             </div>
             <Badge variant="secondary" className="text-[10px] font-mono">
               6 months
@@ -388,10 +385,10 @@ export default function PerformancePage() {
           </div>
         </div>
 
-        <div className="sm:col-span-2 lg:col-span-2 bento-card-dark bg-mesh-gradient p-5 animate-in stagger-2">
+        <div className="sm:col-span-2 lg:col-span-2 eng-card-dark p-5 animate-in stagger-2">
           <div className="mb-2">
-            <span className="text-xs font-medium text-muted-foreground uppercase tracking-wider block">Channel Mix</span>
-            <h3 className="text-base font-bold text-foreground mt-0.5">Revenue by Channel</h3>
+            <span className="text-[10px] font-mono text-muted-foreground uppercase tracking-wider block">Channel Mix</span>
+            <h3 className="text-sm font-medium text-foreground mt-0.5">Revenue by Channel</h3>
           </div>
           <div className="flex items-center gap-6">
             <div className="relative h-[200px] w-[200px] shrink-0">
@@ -449,7 +446,7 @@ export default function PerformancePage() {
       <div className="flex flex-col lg:flex-row gap-4 mt-2">
         <div className="lg:w-[200px] xl:w-[220px] shrink-0 flex flex-col justify-between">
           <div>
-            <h2 className="text-sm font-semibold text-foreground">
+            <h2 className="text-xs font-mono font-medium uppercase tracking-wider text-foreground">
               Channels
             </h2>
             <p className="text-xs text-muted-foreground mt-2 leading-relaxed">
@@ -465,12 +462,12 @@ export default function PerformancePage() {
               <div
                 key={ch.name}
                 className={cn(
-                  "bento-card p-5 flex flex-col justify-between gap-4 animate-in",
+                  "eng-card p-5 flex flex-col justify-between gap-4 animate-in",
                   i < 6 && `stagger-${i + 1}`
                 )}
               >
                 <div className="flex items-center justify-between">
-                  <span className="text-xs font-medium text-muted-foreground uppercase tracking-wider">
+                  <span className="text-[10px] font-mono text-muted-foreground uppercase tracking-wider">
                     {ch.name}
                   </span>
                   <span
@@ -506,9 +503,9 @@ export default function PerformancePage() {
 
       {/* ── Bottom Row ──────────────────────────────────────── */}
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-3 mt-2">
-        <div className="md:col-span-2 bento-card p-5 animate-in stagger-1">
+        <div className="md:col-span-2 eng-card p-5 animate-in stagger-1">
           <div className="flex items-center justify-between mb-4">
-            <span className="text-xs font-medium text-muted-foreground uppercase tracking-wider">Top Products</span>
+            <span className="text-[10px] font-mono text-muted-foreground uppercase tracking-wider">Top Products</span>
             <Badge variant="secondary" className="text-[10px] font-mono">
               {topProducts.length} items
             </Badge>
@@ -558,14 +555,14 @@ export default function PerformancePage() {
           </div>
         </div>
 
-        <div className="bento-card-dark p-5 animate-in stagger-2">
-          <span className="text-xs font-medium text-muted-foreground uppercase tracking-wider block mb-4">
+        <div className="eng-card-dark p-5 animate-in stagger-2">
+          <span className="text-[10px] font-mono text-muted-foreground uppercase tracking-wider block mb-4">
             Growth Indicators
           </span>
           <div className="space-y-5">
             {growthIndicators.map((g) => (
               <div key={g.label} className="flex items-center gap-4">
-                <div className="animate-float">
+                <div>
                   <ProgressRing value={g.value} color={g.color} />
                 </div>
                 <div>
@@ -581,8 +578,8 @@ export default function PerformancePage() {
           </div>
         </div>
 
-        <div className="bento-card-dark bg-dots-pattern p-5 flex flex-col animate-in stagger-3">
-          <span className="text-xs font-medium text-muted-foreground uppercase tracking-wider block mb-4">
+        <div className="eng-card-dark p-5 flex flex-col animate-in stagger-3">
+          <span className="text-[10px] font-mono text-muted-foreground uppercase tracking-wider block mb-4">
             Recent Activity
           </span>
           <div className="flex-1 space-y-3">

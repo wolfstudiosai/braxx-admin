@@ -13,7 +13,7 @@ import {
   DropdownMenuItem,
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
-import { MoreHorizontal, Megaphone, Plus } from "lucide-react";
+import { MoreHorizontal, Plus } from "lucide-react";
 import {
   PieChart,
   Pie,
@@ -221,19 +221,19 @@ export default function CampaignPage() {
       <div className="flex items-end justify-between gap-4">
         <div>
           <div className="flex items-center gap-2 mb-1.5">
-            <span className="inline-flex items-center rounded bg-primary/10 px-2 py-0.5 text-[10px] font-mono font-medium tracking-wider text-primary uppercase">
+            <span className="inline-flex items-center rounded bg-foreground px-2 py-0.5 text-[9px] font-mono font-medium tracking-wider text-background uppercase">
               Active
             </span>
             <span className="text-xs font-medium text-muted-foreground uppercase tracking-wider">
               Planning &amp; Execution
             </span>
           </div>
-          <h1 className="text-xl font-light tracking-tight text-foreground">
-            Campaign <span className="text-muted-foreground">Hub</span>
+          <h1 className="text-sm font-mono font-medium uppercase tracking-wider text-foreground">
+            Campaign
           </h1>
         </div>
         <div className="flex items-center gap-2">
-          <Button size="sm" className="rounded-full text-xs font-medium h-8 gap-1.5">
+          <Button size="sm" className="rounded text-xs font-medium h-8 gap-1.5">
             <Plus className="h-3.5 w-3.5" />
             New Campaign
           </Button>
@@ -242,41 +242,35 @@ export default function CampaignPage() {
 
       {/* ── Metric Strip ── */}
       <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 gap-2">
-        <div className="flex items-center gap-3 rounded-xl card-gradient-emerald px-3 py-2.5">
-          <div className="h-8 w-8 rounded-lg bg-emerald-500/10 flex items-center justify-center shrink-0">
-            <span className="h-2 w-2 rounded-full bg-emerald-500 pulse-live" />
-          </div>
+        <div className="flex items-center gap-3 rounded-lg border border-border bg-card px-3 py-2.5">
           <div className="min-w-0">
-            <span className="text-[10px] text-muted-foreground uppercase tracking-wider block">Active</span>
-            <span className="text-sm font-semibold tabular-nums text-primary">3</span>
+            <span className="text-[9px] font-mono text-muted-foreground uppercase tracking-wider block">Active</span>
+            <span className="text-sm font-mono font-semibold tabular-nums text-primary">3</span>
           </div>
         </div>
-        <div className="flex items-center gap-3 rounded-xl border border-border bg-card px-3 py-2.5">
-          <div className="h-8 w-8 rounded-lg bg-amber-500/10 flex items-center justify-center shrink-0">
-            <Megaphone className="h-4 w-4 text-amber-500" />
-          </div>
+        <div className="flex items-center gap-3 rounded-lg border border-border bg-card px-3 py-2.5">
           <div className="min-w-0">
-            <span className="text-[10px] text-muted-foreground uppercase tracking-wider block">Planning</span>
-            <span className="text-sm font-semibold tabular-nums text-foreground">1</span>
+            <span className="text-[9px] font-mono text-muted-foreground uppercase tracking-wider block">Planning</span>
+            <span className="text-sm font-mono font-semibold tabular-nums text-foreground">1</span>
           </div>
         </div>
-        <div className="flex items-center gap-3 rounded-xl border border-border bg-card px-3 py-2.5">
+        <div className="flex items-center gap-3 rounded-lg border border-border bg-card px-3 py-2.5">
           <div className="min-w-0">
-            <span className="text-[10px] text-muted-foreground uppercase tracking-wider block">Completed</span>
-            <span className="text-sm font-semibold tabular-nums text-emerald-600">2</span>
+            <span className="text-[9px] font-mono text-muted-foreground uppercase tracking-wider block">Completed</span>
+            <span className="text-sm font-mono font-semibold tabular-nums text-emerald-600">2</span>
           </div>
         </div>
-        <div className="flex items-center gap-3 rounded-xl card-gradient-violet px-3 py-2.5">
+        <div className="flex items-center gap-3 rounded-lg border border-border bg-card px-3 py-2.5">
           <div className="min-w-0">
-            <span className="text-[10px] text-muted-foreground uppercase tracking-wider block">Total Reach</span>
-            <span className="text-sm font-semibold tabular-nums text-foreground">186K</span>
+            <span className="text-[9px] font-mono text-muted-foreground uppercase tracking-wider block">Total Reach</span>
+            <span className="text-sm font-mono font-semibold tabular-nums text-foreground">186K</span>
           </div>
         </div>
-        <div className="flex items-center gap-3 rounded-xl card-gradient-blue px-3 py-2.5">
+        <div className="flex items-center gap-3 rounded-lg border border-border bg-card px-3 py-2.5">
           <div className="min-w-0">
-            <span className="text-[10px] text-muted-foreground uppercase tracking-wider block">Budget</span>
+            <span className="text-[9px] font-mono text-muted-foreground uppercase tracking-wider block">Budget</span>
             <div className="flex items-center gap-1.5">
-              <span className="text-sm font-semibold tabular-nums text-foreground">$70K</span>
+              <span className="text-sm font-mono font-semibold tabular-nums text-foreground">$70K</span>
               <span className="text-[10px] text-muted-foreground">68% used</span>
             </div>
           </div>
@@ -298,7 +292,7 @@ export default function CampaignPage() {
         {/* Section Header — Left Column */}
         <div className="lg:w-[200px] xl:w-[220px] shrink-0 flex flex-col justify-between">
           <div>
-            <h2 className="text-sm font-semibold text-foreground">
+            <h2 className="text-xs font-mono font-medium uppercase tracking-wider text-foreground">
               Pipeline
             </h2>
             <p className="text-xs text-muted-foreground mt-2">
@@ -311,9 +305,9 @@ export default function CampaignPage() {
                 key={f}
                 onClick={() => setPipelineFilter(f)}
                 className={cn(
-                  "px-3 py-1 rounded-full text-[10px] font-medium uppercase tracking-wider border transition-all",
+                  "px-3 py-1 rounded text-[10px] font-medium uppercase tracking-wider border transition-all",
                   pipelineFilter === f
-                    ? "bg-primary text-primary-foreground border-primary"
+                    ? "bg-foreground text-background border-foreground"
                     : "bg-transparent text-muted-foreground border-border hover:border-foreground/30"
                 )}
               >
@@ -333,15 +327,15 @@ export default function CampaignPage() {
               <div
                 key={campaign.id}
                 className={cn(
-                  "bento-card group cursor-pointer hover:shadow-md transition-all",
+                  "eng-card group cursor-pointer hover:shadow-md transition-all",
                   "animate-in",
                   i < 6 && `stagger-${i + 1}`
                 )}
                 style={{ borderTopWidth: 3, borderTopColor: BUDGET_COLORS[colorIdx % BUDGET_COLORS.length] }}
               >
                 {/* Header strip */}
-                <div className="px-4 py-2 border-b border-border flex items-center justify-between bg-secondary/30">
-                  <span className={cn("inline-flex items-center rounded-full px-2 py-0.5 text-[9px] font-bold uppercase tracking-wider", TYPE_CHIPS[campaign.type] ?? "chip-neutral")}>
+                <div className="px-4 py-2 border-b border-border flex items-center justify-between">
+                  <span className={cn("inline-flex items-center rounded px-2 py-0.5 text-[9px] font-bold uppercase tracking-wider", TYPE_CHIPS[campaign.type] ?? "chip-neutral")}>
                     {campaign.type}
                   </span>
                   {campaign.status === "active" && (
@@ -427,11 +421,11 @@ export default function CampaignPage() {
       </div>
 
       {/* ── Campaign Timeline (Gantt) ── */}
-      <div className="bento-card p-5 mt-2 animate-shimmer">
+      <div className="eng-card p-5 mt-2">
         <div className="flex items-center justify-between mb-4">
           <div>
-            <span className="text-xs font-medium text-muted-foreground uppercase tracking-wider block">Timeline</span>
-            <h3 className="text-base font-bold text-foreground mt-0.5">Campaign Gantt</h3>
+            <span className="text-[10px] font-mono font-medium text-muted-foreground uppercase tracking-wider block">Timeline</span>
+            <h3 className="text-sm font-medium text-foreground mt-0.5">Campaign Gantt</h3>
           </div>
         </div>
         <div className="overflow-x-auto">
@@ -491,8 +485,8 @@ export default function CampaignPage() {
       {/* ── Bottom Insights Row ── */}
       <div className="grid grid-cols-1 md:grid-cols-3 gap-3">
         {/* Budget Overview Donut — Dark Card */}
-        <div className="bento-card-dark p-5 bg-mesh-gradient">
-          <span className="text-xs font-medium text-muted-foreground uppercase tracking-wider">Budget Overview</span>
+        <div className="eng-card-dark p-5">
+          <span className="text-[10px] font-mono font-medium text-muted-foreground uppercase tracking-wider">Budget Overview</span>
           <div className="flex flex-col items-center mt-2">
             <div className="relative">
               <PieChart width={200} height={200}>
@@ -512,7 +506,7 @@ export default function CampaignPage() {
                   ))}
                 </Pie>
                 <Tooltip
-                  contentStyle={{ fontSize: 12, borderRadius: 8, border: "1px solid hsl(var(--border))", background: "hsl(var(--popover))", color: "hsl(var(--popover-foreground))" }}
+                  contentStyle={{ fontSize: 12, borderRadius: 4, fontFamily: "monospace", border: "1px solid hsl(var(--border))", background: "hsl(var(--popover))", color: "hsl(var(--popover-foreground))" }}
                   formatter={(value: number) => [formatCurrency(value)]}
                 />
               </PieChart>
@@ -539,13 +533,13 @@ export default function CampaignPage() {
         </div>
 
         {/* Top Performing — spans 2 cols */}
-        <div className="md:col-span-2 bento-card p-5 relative overflow-hidden">
-          <div className="absolute inset-0 bg-dots-pattern opacity-10 pointer-events-none" />
+        <div className="md:col-span-2 eng-card p-5 relative overflow-hidden">
+          <div className="absolute inset-0 opacity-10 pointer-events-none" />
           <div className="relative">
             <div className="flex items-center justify-between mb-4">
               <div>
-                <span className="text-xs font-medium text-muted-foreground uppercase tracking-wider block">Top Performing</span>
-                <h3 className="text-base font-bold text-foreground mt-0.5">Campaigns by Reach</h3>
+                <span className="text-[10px] font-mono font-medium text-muted-foreground uppercase tracking-wider block">Top Performing</span>
+                <h3 className="text-sm font-medium text-foreground mt-0.5">Campaigns by Reach</h3>
               </div>
             </div>
             <div className="h-[220px]">
@@ -567,7 +561,7 @@ export default function CampaignPage() {
                     width={140}
                   />
                   <Tooltip
-                    contentStyle={{ fontSize: 12, borderRadius: 8, border: "1px solid var(--border)", background: "var(--background)" }}
+                    contentStyle={{ fontSize: 12, borderRadius: 4, fontFamily: "monospace", border: "1px solid var(--border)", background: "var(--background)" }}
                     formatter={(value: number) => [`${(value / 1000).toFixed(0)}K reach`]}
                   />
                   <Bar dataKey="reach" radius={[0, 4, 4, 0]} barSize={18}>

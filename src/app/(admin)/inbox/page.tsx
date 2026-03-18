@@ -225,23 +225,23 @@ export default function InboxPage() {
       <div className="flex items-end justify-between gap-4">
         <div>
           <div className="flex items-center gap-2 mb-1.5">
-            <span className="inline-flex items-center rounded bg-primary/10 px-2 py-0.5 text-xs font-medium tracking-wider text-primary uppercase">
+            <span className="inline-flex items-center rounded bg-foreground px-2 py-0.5 text-[9px] font-mono font-medium tracking-wider text-background uppercase">
               UNIFIED
             </span>
             <span className="text-xs font-medium text-muted-foreground tracking-wider uppercase">
               All Channels
             </span>
           </div>
-          <h1 className="text-xl font-light tracking-tight text-foreground">
-            In<span className="text-muted-foreground">box</span>
+          <h1 className="text-sm font-mono font-medium uppercase tracking-wider text-foreground">
+            Inbox
           </h1>
         </div>
         <div className="flex items-center gap-2">
-          <Button variant="outline" size="sm" className="text-xs font-medium rounded-full h-8 gap-1.5">
+          <Button variant="outline" size="sm" className="text-xs font-medium rounded h-8 gap-1.5">
             <Archive className="h-3.5 w-3.5" />
             Archive
           </Button>
-          <Button size="sm" className="text-xs font-medium rounded-full h-8 gap-1.5">
+          <Button size="sm" className="text-xs font-medium rounded h-8 gap-1.5">
             <Plus className="h-3.5 w-3.5" />
             Compose
           </Button>
@@ -250,37 +250,28 @@ export default function InboxPage() {
 
       {/* ── Metric Strip ── */}
       <div className="grid grid-cols-2 sm:grid-cols-4 gap-2">
-        <div className="flex items-center gap-3 rounded-xl card-gradient-violet px-3 py-2.5">
-          <div className="h-8 w-8 rounded-lg bg-violet-500/10 flex items-center justify-center shrink-0">
-            <Mail className="h-4 w-4 text-violet-500" />
-          </div>
+        <div className="flex items-center gap-3 rounded-lg border border-border bg-card px-3 py-2.5">
           <div className="min-w-0">
-            <span className="text-[10px] text-muted-foreground uppercase tracking-wider block">Unread</span>
-            <span className="text-sm font-semibold tabular-nums text-primary">{unreadCount}</span>
+            <span className="text-[9px] font-mono text-muted-foreground uppercase tracking-wider block">Unread</span>
+            <span className="text-sm font-mono font-semibold tabular-nums text-primary">{unreadCount}</span>
           </div>
         </div>
-        <div className="flex items-center gap-3 rounded-xl card-gradient-amber px-3 py-2.5">
-          <div className="h-8 w-8 rounded-lg bg-amber-500/10 flex items-center justify-center shrink-0">
-            <Star className="h-4 w-4 text-amber-500 fill-amber-400" />
-          </div>
+        <div className="flex items-center gap-3 rounded-lg border border-border bg-card px-3 py-2.5">
           <div className="min-w-0">
-            <span className="text-[10px] text-muted-foreground uppercase tracking-wider block">Starred</span>
-            <span className="text-sm font-semibold tabular-nums text-foreground">{messages.filter(m => m.starred).length}</span>
+            <span className="text-[9px] font-mono text-muted-foreground uppercase tracking-wider block">Starred</span>
+            <span className="text-sm font-mono font-semibold tabular-nums text-foreground">{messages.filter(m => m.starred).length}</span>
           </div>
         </div>
-        <div className="flex items-center gap-3 rounded-xl border border-border bg-card px-3 py-2.5">
+        <div className="flex items-center gap-3 rounded-lg border border-border bg-card px-3 py-2.5">
           <div className="min-w-0">
-            <span className="text-[10px] text-muted-foreground uppercase tracking-wider block">Total</span>
-            <span className="text-sm font-semibold tabular-nums text-foreground">{messages.length}</span>
+            <span className="text-[9px] font-mono text-muted-foreground uppercase tracking-wider block">Total</span>
+            <span className="text-sm font-mono font-semibold tabular-nums text-foreground">{messages.length}</span>
           </div>
         </div>
-        <div className="flex items-center gap-3 rounded-xl border border-border bg-card px-3 py-2.5">
-          <div className="h-8 w-8 rounded-lg bg-emerald-500/10 flex items-center justify-center shrink-0">
-            <span className="text-[10px] font-bold text-emerald-500">3/3</span>
-          </div>
+        <div className="flex items-center gap-3 rounded-lg border border-border bg-card px-3 py-2.5">
           <div className="min-w-0">
-            <span className="text-[10px] text-muted-foreground uppercase tracking-wider block">Connected</span>
-            <span className="text-sm font-semibold tabular-nums text-emerald-600">All channels</span>
+            <span className="text-[9px] font-mono text-muted-foreground uppercase tracking-wider block">Connected</span>
+            <span className="text-sm font-mono font-semibold tabular-nums text-emerald-600">All channels</span>
           </div>
         </div>
       </div>
@@ -292,9 +283,9 @@ export default function InboxPage() {
             key={tab.value}
             onClick={() => setChannelFilter(tab.value)}
             className={cn(
-              "px-3 py-1 rounded-full text-[10px] font-medium uppercase tracking-wider border transition-all flex items-center gap-1.5",
+              "px-3 py-1 rounded text-[10px] font-medium uppercase tracking-wider border transition-all flex items-center gap-1.5",
               channelFilter === tab.value
-                ? "bg-primary text-primary-foreground border-primary"
+                ? "bg-foreground text-background border-foreground"
                 : "bg-transparent text-muted-foreground border-border hover:border-foreground/30"
             )}
           >
@@ -321,7 +312,7 @@ export default function InboxPage() {
             </div>
           </div>
 
-          <div className="grid grid-cols-1 lg:grid-cols-[340px_1fr] gap-0 rounded-xl border border-border bg-card overflow-hidden animate-border-glow" style={{ height: "calc(100vh - 420px)", minHeight: "400px" }}>
+          <div className="grid grid-cols-1 lg:grid-cols-[340px_1fr] gap-0 rounded-xl border border-border bg-card overflow-hidden" style={{ height: "calc(100vh - 420px)", minHeight: "400px" }}>
             {/* Left: Message list */}
             <div className="flex flex-col border-r border-border">
               <div className="flex-1 overflow-y-auto scrollbar-thin">
@@ -489,7 +480,7 @@ export default function InboxPage() {
                       <div className="flex-1 rounded-lg border border-border bg-background px-3 py-2 min-h-[40px] text-sm text-muted-foreground flex items-center cursor-text" tabIndex={0}>
                         Reply via {channelConfig[selected.channel].label}...
                       </div>
-                      <Button size="sm" className="h-9 px-3 rounded-full">
+                      <Button size="sm" className="h-9 px-3 rounded">
                         <Send className="h-3.5 w-3.5" />
                       </Button>
                     </div>
@@ -515,8 +506,8 @@ export default function InboxPage() {
         {/* Sidebar — dark cards */}
         <div className="space-y-3">
           {/* Channel Breakdown — dark card */}
-          <div className="bento-card-dark p-5 animate-in stagger-1 bg-dots-pattern">
-            <span className="text-xs font-medium text-muted-foreground uppercase tracking-wider">Channel Breakdown</span>
+          <div className="eng-card-dark p-5 animate-in stagger-1">
+            <span className="text-[10px] font-mono font-medium text-muted-foreground uppercase tracking-wider">Channel Breakdown</span>
             <div className="space-y-3 mt-3">
               {(["sms", "slack", "gmail"] as const).map((ch) => {
                 const config = channelConfig[ch];
@@ -554,8 +545,8 @@ export default function InboxPage() {
           </div>
 
           {/* Starred Messages — dark card */}
-          <div className="bento-card-dark p-5 animate-in stagger-2 bg-mesh-gradient">
-            <span className="text-xs font-medium text-muted-foreground uppercase tracking-wider">Starred Messages</span>
+          <div className="eng-card-dark p-5 animate-in stagger-2">
+            <span className="text-[10px] font-mono font-medium text-muted-foreground uppercase tracking-wider">Starred Messages</span>
             <div className="space-y-2.5 mt-3">
               {messages
                 .filter((m) => m.starred)
@@ -580,8 +571,8 @@ export default function InboxPage() {
           </div>
 
           {/* Recent Contacts — dark card */}
-          <div className="bento-card-dark p-5 animate-in stagger-3">
-            <span className="text-xs font-medium text-muted-foreground uppercase tracking-wider">Recent Contacts</span>
+          <div className="eng-card-dark p-5 animate-in stagger-3">
+            <span className="text-[10px] font-mono font-medium text-muted-foreground uppercase tracking-wider">Recent Contacts</span>
             <div className="space-y-2.5 mt-3">
               {Array.from(new Set(messages.map((m) => m.from))).slice(0, 5).map((name) => {
                 const msg = messages.find((m) => m.from === name)!;

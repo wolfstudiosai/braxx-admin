@@ -128,21 +128,21 @@ export default function SocialPage() {
       <div className="flex items-end justify-between gap-4">
         <div>
           <div className="flex items-center gap-2 mb-1.5">
-            <span className="inline-flex items-center rounded bg-primary/10 px-2 py-0.5 text-xs font-medium tracking-wider text-primary uppercase">
+            <span className="inline-flex items-center rounded bg-foreground px-2 py-0.5 text-[9px] font-mono font-medium tracking-wider text-background uppercase">
               MULTI PLATFORM
             </span>
             <span className="text-xs font-medium text-muted-foreground tracking-wider uppercase">
               Content &amp; Engagement
             </span>
           </div>
-          <h1 className="text-xl font-light tracking-tight text-foreground">
-            Social <span className="text-muted-foreground">Hub</span>
+          <h1 className="text-sm font-mono font-medium uppercase tracking-wider text-foreground">
+            Social
           </h1>
         </div>
         <div className="flex items-center gap-2">
           <Button
             size="sm"
-            className="text-xs font-medium rounded-full h-8 gap-1.5"
+            className="text-xs font-medium rounded h-8 gap-1.5"
           >
             <Calendar className="h-3.5 w-3.5" />
             Schedule Post
@@ -150,7 +150,7 @@ export default function SocialPage() {
           <Button
             variant="outline"
             size="sm"
-            className="text-xs font-medium rounded-full h-8"
+            className="text-xs font-medium rounded h-8"
           >
             Analytics
           </Button>
@@ -159,50 +159,38 @@ export default function SocialPage() {
 
       {/* ── Metric Strip ── */}
       <div className="grid grid-cols-2 sm:grid-cols-4 gap-2">
-        <div className="flex items-center gap-3 rounded-xl card-gradient-pink px-3 py-2.5">
-          <div className="h-8 w-8 rounded-lg bg-pink-500/10 flex items-center justify-center shrink-0">
-            <span className="text-[11px] font-bold text-pink-500">IG</span>
-          </div>
+        <div className="flex items-center gap-3 rounded-lg border border-border bg-card px-3 py-2.5">
           <div className="min-w-0">
-            <span className="text-[10px] text-muted-foreground uppercase tracking-wider block">Instagram</span>
+            <span className="text-[9px] font-mono text-muted-foreground uppercase tracking-wider block">Instagram</span>
             <div className="flex items-center gap-1.5">
-              <span className="text-sm font-semibold tabular-nums text-foreground">12.4K</span>
+              <span className="text-sm font-mono font-semibold tabular-nums text-foreground">12.4K</span>
               <span className="text-[10px] text-emerald-600 font-medium">5.2%</span>
             </div>
           </div>
         </div>
-        <div className="flex items-center gap-3 rounded-xl border border-border bg-card px-3 py-2.5">
-          <div className="h-8 w-8 rounded-lg bg-zinc-500/10 flex items-center justify-center shrink-0">
-            <span className="text-[11px] font-bold text-zinc-600">TT</span>
-          </div>
+        <div className="flex items-center gap-3 rounded-lg border border-border bg-card px-3 py-2.5">
           <div className="min-w-0">
-            <span className="text-[10px] text-muted-foreground uppercase tracking-wider block">TikTok</span>
+            <span className="text-[9px] font-mono text-muted-foreground uppercase tracking-wider block">TikTok</span>
             <div className="flex items-center gap-1.5">
-              <span className="text-sm font-semibold tabular-nums text-foreground">8.2K</span>
+              <span className="text-sm font-mono font-semibold tabular-nums text-foreground">8.2K</span>
               <span className="text-[10px] text-emerald-600 font-medium">7.8%</span>
             </div>
           </div>
         </div>
-        <div className="flex items-center gap-3 rounded-xl card-gradient-rose px-3 py-2.5">
-          <div className="h-8 w-8 rounded-lg bg-red-500/10 flex items-center justify-center shrink-0">
-            <span className="text-[11px] font-bold text-red-500">YT</span>
-          </div>
+        <div className="flex items-center gap-3 rounded-lg border border-border bg-card px-3 py-2.5">
           <div className="min-w-0">
-            <span className="text-[10px] text-muted-foreground uppercase tracking-wider block">YouTube</span>
+            <span className="text-[9px] font-mono text-muted-foreground uppercase tracking-wider block">YouTube</span>
             <div className="flex items-center gap-1.5">
-              <span className="text-sm font-semibold tabular-nums text-foreground">2.8K</span>
+              <span className="text-sm font-mono font-semibold tabular-nums text-foreground">2.8K</span>
               <span className="text-[10px] text-emerald-600 font-medium">3.1%</span>
             </div>
           </div>
         </div>
-        <div className="flex items-center gap-3 rounded-xl border border-border bg-card px-3 py-2.5">
-          <div className="h-8 w-8 rounded-lg bg-slate-500/10 flex items-center justify-center shrink-0">
-            <span className="text-[11px] font-bold text-slate-500">X</span>
-          </div>
+        <div className="flex items-center gap-3 rounded-lg border border-border bg-card px-3 py-2.5">
           <div className="min-w-0">
-            <span className="text-[10px] text-muted-foreground uppercase tracking-wider block">X (Twitter)</span>
+            <span className="text-[9px] font-mono text-muted-foreground uppercase tracking-wider block">X (Twitter)</span>
             <div className="flex items-center gap-1.5">
-              <span className="text-sm font-semibold tabular-nums text-foreground">1.4K</span>
+              <span className="text-sm font-mono font-semibold tabular-nums text-foreground">1.4K</span>
               <span className="text-[10px] text-emerald-600 font-medium">2.4%</span>
             </div>
           </div>
@@ -210,7 +198,7 @@ export default function SocialPage() {
       </div>
 
       {/* ── Audience Growth Chart ── */}
-      <div className="animate-shimmer">
+      <div>
         <ModuleChart
           title="Audience Growth"
           subtitle="Total followers across all platforms — 12 weeks"
@@ -225,7 +213,7 @@ export default function SocialPage() {
       <div className="flex flex-col lg:flex-row gap-4 mt-2">
         <div className="lg:w-[200px] xl:w-[220px] shrink-0 flex flex-col justify-between">
           <div>
-            <h2 className="text-sm font-semibold text-foreground">
+            <h2 className="text-xs font-mono font-medium uppercase tracking-wider text-foreground">
               Content Queue
             </h2>
             <p className="text-xs text-muted-foreground mt-2 leading-relaxed">
@@ -238,9 +226,9 @@ export default function SocialPage() {
                 key={plat}
                 onClick={() => setActiveFilter(plat)}
                 className={cn(
-                  "px-3 py-1 rounded-full text-[10px] font-mono font-medium uppercase tracking-wider border transition-all",
+                  "px-3 py-1 rounded text-[10px] font-mono font-medium uppercase tracking-wider border transition-all",
                   activeFilter === plat
-                    ? "bg-primary text-primary-foreground border-primary"
+                    ? "bg-foreground text-background border-foreground"
                     : "bg-transparent text-muted-foreground border-border hover:border-foreground/30"
                 )}
               >
@@ -255,7 +243,7 @@ export default function SocialPage() {
             <div
               key={item.title}
               className={cn(
-                "bento-card group cursor-pointer hover:shadow-md transition-all",
+                "eng-card group cursor-pointer hover:shadow-md transition-all",
                 "animate-in",
                 i < 6 && `stagger-${i + 1}`
               )}
@@ -303,9 +291,9 @@ export default function SocialPage() {
       </div>
 
       {/* ── Recent Posts Strip ── */}
-      <div className="bento-card p-5 bg-mesh-gradient">
+      <div className="eng-card p-5">
         <div className="flex items-center justify-between mb-3">
-          <span className="text-xs font-medium text-muted-foreground uppercase tracking-wider">
+          <span className="text-[10px] font-mono font-medium text-muted-foreground uppercase tracking-wider">
             Recent Posts
           </span>
           <button className="text-[10px] font-mono text-primary hover:underline flex items-center gap-1 uppercase tracking-wider">

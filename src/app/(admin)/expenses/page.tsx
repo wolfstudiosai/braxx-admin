@@ -231,23 +231,23 @@ export default function ExpensesPage() {
       <div className="flex items-end justify-between gap-4">
         <div>
           <div className="flex items-center gap-2 mb-1.5">
-            <span className="inline-flex items-center rounded bg-primary/10 px-2 py-0.5 text-xs font-medium tracking-wider text-primary uppercase">
+            <span className="inline-flex items-center rounded bg-foreground px-2 py-0.5 text-[9px] font-mono font-medium tracking-wider text-background uppercase">
               MONTHLY
             </span>
             <span className="text-xs font-medium text-muted-foreground tracking-wider uppercase">
               Expense Tracking
             </span>
           </div>
-          <h1 className="text-xl font-light tracking-tight text-foreground">
-            Expense <span className="text-muted-foreground">Tracker</span>
+          <h1 className="text-sm font-mono font-medium uppercase tracking-wider text-foreground">
+            Expense
           </h1>
         </div>
         <div className="flex items-center gap-2">
-          <Button variant="outline" size="sm" className="text-xs font-medium rounded-full h-8">
+          <Button variant="outline" size="sm" className="text-xs font-medium rounded h-8">
             <Download className="h-3.5 w-3.5 mr-1.5" />
             Export
           </Button>
-          <Button size="sm" className="text-xs font-medium rounded-full h-8 gap-1.5">
+          <Button size="sm" className="text-xs font-medium rounded h-8 gap-1.5">
             <Plus className="h-3.5 w-3.5" />
             New Expense
           </Button>
@@ -256,49 +256,40 @@ export default function ExpensesPage() {
 
       {/* ── Metric Strip ── */}
       <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 gap-2">
-        <div className="flex items-center gap-3 rounded-xl border border-border bg-card px-3 py-2.5">
-          <div className="h-8 w-8 rounded-lg bg-violet-500/10 flex items-center justify-center shrink-0">
-            <DollarSign className="h-4 w-4 text-violet-500" />
-          </div>
+        <div className="flex items-center gap-3 rounded-lg border border-border bg-card px-3 py-2.5">
           <div className="min-w-0">
-            <span className="text-[10px] text-muted-foreground uppercase tracking-wider block">Total</span>
-            <span className="text-sm font-semibold tabular-nums text-foreground">{formatCurrency(34820)}</span>
+            <span className="text-[9px] font-mono text-muted-foreground uppercase tracking-wider block">Total</span>
+            <span className="text-sm font-mono font-semibold tabular-nums text-foreground">{formatCurrency(34820)}</span>
           </div>
         </div>
-        <div className="flex items-center gap-3 rounded-xl card-gradient-amber px-3 py-2.5">
-          <div className="h-8 w-8 rounded-lg bg-amber-500/10 flex items-center justify-center shrink-0 pulse-live">
-            <Clock className="h-4 w-4 text-amber-500" />
-          </div>
+        <div className="flex items-center gap-3 rounded-lg border border-border bg-card px-3 py-2.5">
           <div className="min-w-0">
-            <span className="text-[10px] text-muted-foreground uppercase tracking-wider block">Pending</span>
-            <span className="text-sm font-semibold tabular-nums text-primary">{formatCurrency(8400)}</span>
+            <span className="text-[9px] font-mono text-muted-foreground uppercase tracking-wider block">Pending</span>
+            <span className="text-sm font-mono font-semibold tabular-nums text-primary">{formatCurrency(8400)}</span>
           </div>
         </div>
-        <div className="flex items-center gap-3 rounded-xl card-gradient-emerald px-3 py-2.5">
-          <div className="h-8 w-8 rounded-lg bg-emerald-500/10 flex items-center justify-center shrink-0">
-            <Check className="h-4 w-4 text-emerald-500" />
-          </div>
+        <div className="flex items-center gap-3 rounded-lg border border-border bg-card px-3 py-2.5">
           <div className="min-w-0">
-            <span className="text-[10px] text-muted-foreground uppercase tracking-wider block">Approved</span>
-            <span className="text-sm font-semibold tabular-nums text-emerald-600">{formatCurrency(22420)}</span>
+            <span className="text-[9px] font-mono text-muted-foreground uppercase tracking-wider block">Approved</span>
+            <span className="text-sm font-mono font-semibold tabular-nums text-emerald-600">{formatCurrency(22420)}</span>
           </div>
         </div>
-        <div className="flex items-center gap-3 rounded-xl border border-border bg-card px-3 py-2.5">
+        <div className="flex items-center gap-3 rounded-lg border border-border bg-card px-3 py-2.5">
           <div className="min-w-0">
-            <span className="text-[10px] text-muted-foreground uppercase tracking-wider block">Budget</span>
-            <span className="text-sm font-semibold tabular-nums text-foreground">$50,000</span>
+            <span className="text-[9px] font-mono text-muted-foreground uppercase tracking-wider block">Budget</span>
+            <span className="text-sm font-mono font-semibold tabular-nums text-foreground">$50,000</span>
           </div>
         </div>
-        <div className="flex items-center gap-3 rounded-xl card-gradient-blue px-3 py-2.5">
+        <div className="flex items-center gap-3 rounded-lg border border-border bg-card px-3 py-2.5">
           <div className="min-w-0">
-            <span className="text-[10px] text-muted-foreground uppercase tracking-wider block">Remaining</span>
-            <span className="text-sm font-semibold tabular-nums text-foreground">{formatCurrency(15180)}</span>
+            <span className="text-[9px] font-mono text-muted-foreground uppercase tracking-wider block">Remaining</span>
+            <span className="text-sm font-mono font-semibold tabular-nums text-foreground">{formatCurrency(15180)}</span>
           </div>
         </div>
       </div>
 
       {/* ── Expense Overview Chart ── */}
-      <div className="animate-shimmer">
+      <div>
         <ModuleChart
           title="Expense Overview"
           subtitle="Monthly spend by category"
@@ -312,8 +303,8 @@ export default function ExpensesPage() {
       {/* ── Charts Row ── */}
       <div className="grid grid-cols-1 lg:grid-cols-3 gap-3">
         {/* Category Breakdown — Dark Card */}
-        <div className="bento-card-dark p-5 animate-in stagger-1 bg-mesh-gradient">
-          <span className="text-xs font-medium text-muted-foreground uppercase tracking-wider">Category Breakdown</span>
+        <div className="eng-card-dark p-5 animate-in stagger-1">
+          <span className="text-[10px] font-mono font-medium text-muted-foreground uppercase tracking-wider">Category Breakdown</span>
           <div className="flex flex-col items-center mt-2">
             <div className="relative animate-scale-in">
               <PieChart width={200} height={200}>
@@ -360,11 +351,11 @@ export default function ExpensesPage() {
         </div>
 
         {/* Monthly Spend Trend — spans 2 cols */}
-        <div className="lg:col-span-2 bento-card p-5 animate-in stagger-2 animate-shimmer">
+        <div className="lg:col-span-2 eng-card p-5 animate-in stagger-2">
           <div className="flex items-center justify-between mb-4">
             <div>
-              <span className="text-xs font-medium text-muted-foreground uppercase tracking-wider block">Monthly Trend</span>
-              <h3 className="text-base font-bold text-foreground mt-0.5">Spend Over Time</h3>
+              <span className="text-[10px] font-mono font-medium text-muted-foreground uppercase tracking-wider block">Monthly Trend</span>
+              <h3 className="text-sm font-medium text-foreground mt-0.5">Spend Over Time</h3>
             </div>
             <Badge variant="outline" className="text-[9px] font-mono h-5 px-1.5">6 Months</Badge>
           </div>
@@ -420,8 +411,8 @@ export default function ExpensesPage() {
                 key={tab}
                 value={tab}
                 className={cn(
-                  "rounded-full px-3 py-1 text-[10px] font-mono font-medium uppercase tracking-wider border transition-all",
-                  "data-[state=active]:bg-primary data-[state=active]:text-primary-foreground data-[state=active]:border-primary",
+                  "rounded px-3 py-1 text-[10px] font-mono font-medium uppercase tracking-wider border transition-all",
+                  "data-[state=active]:bg-foreground data-[state=active]:text-background data-[state=active]:border-foreground",
                   "data-[state=inactive]:bg-transparent data-[state=inactive]:text-muted-foreground data-[state=inactive]:border-border data-[state=inactive]:hover:border-foreground/30",
                 )}
               >
@@ -442,7 +433,7 @@ export default function ExpensesPage() {
                 {/* Expense List */}
                 <div className="lg:col-span-2 space-y-3">
                   <div className="flex items-center justify-between">
-                    <span className="text-xs font-medium text-muted-foreground uppercase tracking-wider">
+                    <span className="text-[10px] font-mono font-medium text-muted-foreground uppercase tracking-wider">
                       Expense Requests
                     </span>
                     <span className="text-[10px] font-mono text-muted-foreground">
@@ -453,10 +444,9 @@ export default function ExpensesPage() {
                     <div
                       key={expense.id}
                       className={cn(
-                        "bento-card p-4 border-l-[3px] transition-all hover:-translate-y-0.5 hover:shadow-md",
+                        "eng-card p-4 border-l-[3px] transition-all hover:-translate-y-0.5 hover:shadow-md",
                         "flex flex-col sm:flex-row sm:items-center gap-4",
                         CATEGORY_BORDER[expense.category] ?? "border-l-muted",
-                        expense.status === "Pending" && "card-gradient-amber",
                         "animate-in",
                         i < 6 && `stagger-${i + 1}`,
                       )}
@@ -500,7 +490,7 @@ export default function ExpensesPage() {
                     </div>
                   ))}
                   {filtered.length === 0 && (
-                    <div className="bento-card p-8 text-center">
+                    <div className="eng-card p-8 text-center">
                       <p className="text-sm text-muted-foreground">
                         No expenses match this filter.
                       </p>
@@ -510,11 +500,11 @@ export default function ExpensesPage() {
 
                 {/* Approval Queue Sidebar — Dark */}
                 <div className="space-y-3">
-                  <div className="bento-card-dark p-5 flex flex-col animate-border-glow">
+                  <div className="eng-card-dark p-5 flex flex-col">
                     <div className="flex items-center justify-between mb-4">
                       <div>
-                        <span className="text-xs font-medium text-muted-foreground uppercase tracking-wider block">Approval Queue</span>
-                        <h3 className="text-sm font-bold text-foreground mt-0.5">Awaiting Review</h3>
+                        <span className="text-[10px] font-mono font-medium text-muted-foreground uppercase tracking-wider block">Approval Queue</span>
+                        <h3 className="text-sm font-medium text-foreground mt-0.5">Awaiting Review</h3>
                       </div>
                       <div className="h-7 w-7 rounded-full bg-amber-500/20 flex items-center justify-center">
                         <Clock className="h-3.5 w-3.5 text-amber-400" />
@@ -524,7 +514,7 @@ export default function ExpensesPage() {
                       {APPROVAL_QUEUE.map((item) => (
                         <div
                           key={item.title}
-                          className="rounded-lg border border-border bg-secondary/30 p-4 space-y-3"
+                          className="rounded-lg border border-border p-4 space-y-3"
                         >
                           <div className="flex items-start justify-between gap-2">
                             <div className="min-w-0 space-y-1">
@@ -544,11 +534,11 @@ export default function ExpensesPage() {
                             </span>
                           </div>
                           <div className="flex gap-2">
-                            <Button size="sm" className="h-7 text-xs font-medium flex-1 rounded-full">
+                            <Button size="sm" className="h-7 text-xs font-medium flex-1 rounded">
                               <Check className="h-3.5 w-3.5 mr-1" />
                               Approve
                             </Button>
-                            <Button variant="outline" size="sm" className="h-7 text-xs font-medium flex-1 rounded-full text-red-400 border-red-500/30 hover:bg-red-500/10 hover:text-red-300">
+                            <Button variant="outline" size="sm" className="h-7 text-xs font-medium flex-1 rounded text-red-400 border-red-500/30 hover:bg-red-500/10 hover:text-red-300">
                               <X className="h-3.5 w-3.5 mr-1" />
                               Reject
                             </Button>
@@ -559,8 +549,8 @@ export default function ExpensesPage() {
                   </div>
 
                   {/* Budget Overview — compact */}
-                  <div className="bento-card p-5">
-                    <span className="text-xs font-medium text-muted-foreground uppercase tracking-wider block mb-3">Budget Overview</span>
+                  <div className="eng-card p-5">
+                    <span className="text-[10px] font-mono font-medium text-muted-foreground uppercase tracking-wider block mb-3">Budget Overview</span>
                     <div className="space-y-3">
                       <div className="flex items-center justify-between">
                         <span className="text-[11px] font-mono text-muted-foreground">Monthly Budget</span>

@@ -7,13 +7,11 @@ import { StatusDot, ModuleChart } from "@/components/workspace";
 import { getInitials, cn } from "@/lib/utils";
 import {
   CheckCircle2,
-  AlertTriangle,
   Package,
   FileText,
   Users,
   Clock,
   Plus,
-  Activity,
   Settings,
   ArrowUpRight,
 } from "lucide-react";
@@ -205,22 +203,22 @@ export default function OperationsPage() {
       <div className="flex items-end justify-between gap-4">
         <div>
           <div className="flex items-center gap-2 mb-1.5">
-            <span className="inline-flex items-center rounded bg-primary/10 px-2 py-0.5 text-[10px] font-mono font-medium tracking-wider text-primary uppercase">
+            <span className="inline-flex items-center rounded bg-foreground px-2 py-0.5 text-[9px] font-mono font-medium tracking-wider text-background uppercase">
               Q1 2026
             </span>
             <span className="text-[10px] font-mono text-muted-foreground tracking-wider uppercase">
               System Active
             </span>
           </div>
-          <h1 className="text-xl font-light tracking-tight text-foreground">
-            Operations <span className="text-muted-foreground">Grid</span>
+          <h1 className="text-sm font-mono font-medium uppercase tracking-wider text-foreground">
+            Operations
           </h1>
         </div>
         <div className="flex items-center gap-2">
-          <Button variant="outline" size="sm" className="rounded-full text-xs font-medium h-8">
+          <Button variant="outline" size="sm" className="rounded text-xs font-medium h-8">
             View Archive
           </Button>
-          <Button size="sm" className="rounded-full text-xs font-medium h-8 gap-1.5">
+          <Button size="sm" className="rounded text-xs font-medium h-8 gap-1.5">
             <Plus className="h-3.5 w-3.5" />
             New Task
           </Button>
@@ -245,62 +243,47 @@ export default function OperationsPage() {
 
       {/* ── Metric Strip ── */}
       <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 gap-2">
-        <div className="flex items-center gap-3 rounded-xl border border-border bg-card px-3 py-2.5">
-          <div className="h-8 w-8 rounded-lg bg-blue-500/10 flex items-center justify-center shrink-0">
-            <Package className="h-4 w-4 text-blue-500" />
-          </div>
+        <div className="flex items-center gap-3 rounded-lg border border-border bg-card px-3 py-2.5">
           <div className="min-w-0">
-            <span className="text-[10px] text-muted-foreground uppercase tracking-wider block">Open</span>
+            <span className="text-[9px] font-mono text-muted-foreground uppercase tracking-wider block">Open</span>
             <div className="flex items-center gap-1.5">
-              <span className="text-sm font-semibold tabular-nums text-foreground">8</span>
+              <span className="text-sm font-mono font-semibold tabular-nums text-foreground">8</span>
               <span className="text-[10px] text-muted-foreground">tasks</span>
             </div>
           </div>
         </div>
-        <div className="flex items-center gap-3 rounded-xl border border-border bg-card px-3 py-2.5">
-          <div className="h-8 w-8 rounded-lg bg-violet-500/10 flex items-center justify-center shrink-0">
-            <Activity className="h-4 w-4 text-violet-500" />
-          </div>
+        <div className="flex items-center gap-3 rounded-lg border border-border bg-card px-3 py-2.5">
           <div className="min-w-0">
-            <span className="text-[10px] text-muted-foreground uppercase tracking-wider block">Active</span>
+            <span className="text-[9px] font-mono text-muted-foreground uppercase tracking-wider block">Active</span>
             <div className="flex items-center gap-1.5">
-              <span className="text-sm font-semibold tabular-nums text-foreground">3</span>
+              <span className="text-sm font-mono font-semibold tabular-nums text-foreground">3</span>
               <span className="text-[10px] text-emerald-600 font-medium">in progress</span>
             </div>
           </div>
         </div>
-        <div className="flex items-center gap-3 rounded-xl card-gradient-rose px-3 py-2.5">
-          <div className="h-8 w-8 rounded-lg bg-red-500/10 flex items-center justify-center shrink-0 pulse-live">
-            <AlertTriangle className="h-4 w-4 text-red-500" />
-          </div>
+        <div className="flex items-center gap-3 rounded-lg border border-border bg-card px-3 py-2.5">
           <div className="min-w-0">
-            <span className="text-[10px] text-muted-foreground uppercase tracking-wider block">Flagged</span>
+            <span className="text-[9px] font-mono text-muted-foreground uppercase tracking-wider block">Flagged</span>
             <div className="flex items-center gap-1.5">
-              <span className="text-sm font-semibold tabular-nums text-primary">2</span>
+              <span className="text-sm font-mono font-semibold tabular-nums text-primary">2</span>
               <span className="text-[10px] text-red-500 font-medium">critical</span>
             </div>
           </div>
         </div>
-        <div className="flex items-center gap-3 rounded-xl border border-border bg-card px-3 py-2.5">
-          <div className="h-8 w-8 rounded-lg bg-amber-500/10 flex items-center justify-center shrink-0">
-            <Clock className="h-4 w-4 text-amber-500" />
-          </div>
+        <div className="flex items-center gap-3 rounded-lg border border-border bg-card px-3 py-2.5">
           <div className="min-w-0">
-            <span className="text-[10px] text-muted-foreground uppercase tracking-wider block">In Progress</span>
+            <span className="text-[9px] font-mono text-muted-foreground uppercase tracking-wider block">In Progress</span>
             <div className="flex items-center gap-1.5">
-              <span className="text-sm font-semibold tabular-nums text-foreground">3</span>
+              <span className="text-sm font-mono font-semibold tabular-nums text-foreground">3</span>
               <span className="text-[10px] text-muted-foreground">of 8</span>
             </div>
           </div>
         </div>
-        <div className="flex items-center gap-3 rounded-xl card-gradient-emerald px-3 py-2.5">
-          <div className="h-8 w-8 rounded-lg bg-emerald-500/10 flex items-center justify-center shrink-0">
-            <CheckCircle2 className="h-4 w-4 text-emerald-500" />
-          </div>
+        <div className="flex items-center gap-3 rounded-lg border border-border bg-card px-3 py-2.5">
           <div className="min-w-0">
-            <span className="text-[10px] text-muted-foreground uppercase tracking-wider block">Done/Week</span>
+            <span className="text-[9px] font-mono text-muted-foreground uppercase tracking-wider block">Done/Week</span>
             <div className="flex items-center gap-1.5">
-              <span className="text-sm font-semibold tabular-nums text-emerald-600">12</span>
+              <span className="text-sm font-mono font-semibold tabular-nums text-emerald-600">12</span>
               <span className="text-[10px] text-emerald-600 font-medium">+4</span>
             </div>
           </div>
@@ -319,7 +302,7 @@ export default function OperationsPage() {
       <div className="flex flex-col lg:flex-row gap-4 mt-2">
         <div className="lg:w-[200px] xl:w-[220px] shrink-0 flex flex-col justify-between">
           <div>
-            <h2 className="text-sm font-semibold text-foreground">
+            <h2 className="text-xs font-mono font-medium uppercase tracking-wider text-foreground">
               Workflows
             </h2>
             <p className="text-xs text-muted-foreground mt-2 leading-relaxed">
@@ -332,9 +315,9 @@ export default function OperationsPage() {
                 key={mod}
                 onClick={() => setActiveFilter(mod)}
                 className={cn(
-                  "px-3 py-1 rounded-full text-[10px] font-mono font-medium uppercase tracking-wider border transition-all",
+                  "px-3 py-1 rounded text-[10px] font-mono font-medium uppercase tracking-wider border transition-all",
                   activeFilter === mod
-                    ? "bg-primary text-primary-foreground border-primary"
+                    ? "bg-foreground text-background border-foreground"
                     : "bg-transparent text-muted-foreground border-border hover:border-foreground/30"
                 )}
               >
@@ -353,13 +336,12 @@ export default function OperationsPage() {
               <div
                 key={item.title}
                 className={cn(
-                  "bento-card group cursor-pointer hover:shadow-md transition-all",
+                  "eng-card group cursor-pointer hover:shadow-md transition-all",
                   "animate-in",
-                  i < 6 && `stagger-${i + 1}`,
-                  i === 0 && "animate-shimmer"
+                  i < 6 && `stagger-${i + 1}`
                 )}
               >
-                <div className="px-4 py-2 border-b border-border flex items-center justify-between bg-secondary/30">
+                <div className="px-4 py-2 border-b border-border flex items-center justify-between">
                   <span className="text-xs text-muted-foreground uppercase flex items-center gap-1.5">
                     <ModuleIcon className="h-3 w-3" />
                     {item.module}
@@ -373,7 +355,7 @@ export default function OperationsPage() {
                     {item.title}
                   </p>
                   <div className="flex items-center gap-1.5 flex-wrap">
-                    <span className={cn("inline-flex rounded-full px-2 py-0.5 text-[9px] font-bold uppercase tracking-wider", prioConfig.pill)}>
+                    <span className={cn("inline-flex rounded px-2 py-0.5 text-[9px] font-bold uppercase tracking-wider", prioConfig.pill)}>
                       {prioConfig.label}
                     </span>
                     <span className={cn("text-[10px] flex items-center gap-1 font-mono", getDueColor(item.due))}>
@@ -420,11 +402,11 @@ export default function OperationsPage() {
 
       {/* ── Insights Grid ── */}
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-3 mt-2">
-        <div className="md:col-span-2 bento-card bg-mesh-gradient p-5">
+        <div className="md:col-span-2 eng-card p-5">
           <div className="flex items-center justify-between mb-4">
             <div>
-              <span className="text-xs font-medium text-muted-foreground uppercase tracking-wider block">Team Pulse</span>
-              <h3 className="text-base font-bold text-foreground mt-0.5">Workload Distribution</h3>
+              <span className="text-[10px] font-mono text-muted-foreground uppercase tracking-wider block">Team Pulse</span>
+              <h3 className="text-sm font-medium text-foreground mt-0.5">Workload Distribution</h3>
             </div>
             <div className="flex items-center gap-3">
               <div className="flex items-center gap-1.5">
@@ -456,8 +438,9 @@ export default function OperationsPage() {
                   contentStyle={{
                     background: "hsl(var(--card))",
                     border: "1px solid hsl(var(--border))",
-                    borderRadius: "8px",
+                    borderRadius: "4px",
                     fontSize: "12px",
+                    fontFamily: "monospace",
                   }}
                 />
                 <Bar dataKey="inProgress" stackId="a" fill="hsl(var(--primary))" name="In Progress" />
@@ -467,9 +450,9 @@ export default function OperationsPage() {
           </div>
         </div>
 
-        <div className="bento-card-dark p-5">
-          <span className="text-xs font-medium text-muted-foreground uppercase tracking-wider">Priority Mix</span>
-          <div className="relative h-[150px] mt-2 animate-float">
+        <div className="eng-card-dark p-5">
+          <span className="text-[10px] font-mono text-muted-foreground uppercase tracking-wider">Priority Mix</span>
+          <div className="relative h-[150px] mt-2">
             <ResponsiveContainer width="100%" height="100%">
               <PieChart>
                 <Pie
@@ -500,9 +483,9 @@ export default function OperationsPage() {
           </div>
         </div>
 
-        <div className="bento-card-dark bg-dots-pattern p-5 flex flex-col">
+        <div className="eng-card-dark p-5 flex flex-col">
           <div className="flex items-center justify-between mb-3">
-            <span className="text-xs font-medium text-muted-foreground uppercase tracking-wider">Ops Notes</span>
+            <span className="text-[10px] font-mono text-muted-foreground uppercase tracking-wider">Ops Notes</span>
             <Settings className="h-3.5 w-3.5 text-muted-foreground" />
           </div>
           <div className="flex-1 space-y-3">
@@ -521,9 +504,9 @@ export default function OperationsPage() {
       </div>
 
       {/* ── Recently Completed Strip ── */}
-      <div className="bento-card p-5">
+      <div className="eng-card p-5">
         <div className="flex items-center justify-between mb-3">
-          <span className="text-xs font-medium text-muted-foreground uppercase tracking-wider">Recently Completed</span>
+          <span className="text-[10px] font-mono text-muted-foreground uppercase tracking-wider">Recently Completed</span>
           <button className="text-[10px] font-medium text-primary hover:underline flex items-center gap-1 uppercase tracking-wider">
             View All <ArrowUpRight className="h-3 w-3" />
           </button>
