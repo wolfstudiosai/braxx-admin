@@ -3,7 +3,7 @@
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 import { Avatar, AvatarFallback } from "@/components/ui/avatar";
-import { ModuleChart } from "@/components/workspace";
+import { ModuleChart, ContentStrip } from "@/components/workspace";
 import {
   cn,
   formatCurrency,
@@ -308,6 +308,18 @@ export default function PerformancePage() {
         data={PERF_CHART_DATA}
         xKey="month"
         series={PERF_CHART_SERIES}
+      />
+
+      {/* ── Sales Highlights Strip ── */}
+      <ContentStrip
+        label="Sales Highlights"
+        items={[
+          { title: "GT Pro Desert Shoot", subtitle: "Campaign asset", tag: "Photo", gradient: "ember" },
+          { title: "Showroom Display", subtitle: "True Motion", tag: "Partner", gradient: "carbon" },
+          { title: "Fleet Handover", subtitle: "Urban Rides Inc", tag: "Event", gradient: "midnight" },
+          { title: "Rider Testimonial", subtitle: "Jake Morrison", tag: "Video", gradient: "obsidian" },
+          { title: "Product Comparison", subtitle: "GT vs GT Pro", tag: "Content", gradient: "steel" },
+        ]}
       />
 
       {/* ── Charts Row ──────────────────────────────────────── */}

@@ -3,7 +3,7 @@
 import { useState } from "react";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
-import { FeedItem, StatusDot, ModuleChart } from "@/components/workspace";
+import { FeedItem, StatusDot, ModuleChart, ContentStrip } from "@/components/workspace";
 import { formatCurrency, cn, getInitials } from "@/lib/utils";
 import { Avatar, AvatarFallback } from "@/components/ui/avatar";
 import {
@@ -257,6 +257,18 @@ export default function PartnersPage() {
           formatValue={(v) => `$${(v / 1000).toFixed(0)}K`}
         />
       </div>
+
+      {/* ── Partner Events Strip ── */}
+      <ContentStrip
+        label="Partner Events & Activities"
+        items={[
+          { title: "Test Ride Event — LA", subtitle: "40+ attendees", tag: "Event", gradient: "violet" },
+          { title: "Showroom Install — NYC", subtitle: "Empire Electric", tag: "Setup", gradient: "steel" },
+          { title: "Fleet Delivery — PDX", subtitle: "Pacific Electric", tag: "Delivery", gradient: "obsidian" },
+          { title: "Dealer Training", subtitle: "Q2 program", tag: "Training", gradient: "midnight" },
+          { title: "Launch Event — Denver", subtitle: "Peak Performance", tag: "Launch", gradient: "forest" },
+        ]}
+      />
 
       {/* ── Partner Network Section ── */}
       <div className="flex flex-col lg:flex-row gap-4 mt-2">

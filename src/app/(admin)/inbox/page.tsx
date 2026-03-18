@@ -23,6 +23,7 @@ import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 import { Avatar, AvatarFallback } from "@/components/ui/avatar";
 import { Separator } from "@/components/ui/separator";
+import { ContentStrip } from "@/components/workspace";
 
 // ─── Types ──────────────────────────────────────────────────────────────────
 
@@ -294,6 +295,19 @@ export default function InboxPage() {
           </button>
         ))}
       </div>
+
+      {/* ── Key Contacts ── */}
+      <ContentStrip
+        label="Key Contacts"
+        aspect="square"
+        items={[
+          { title: "Jake Morrison", subtitle: "True Motion Cycles", tag: "Partner", gradient: "violet" },
+          { title: "Emma Williams", subtitle: "ChargePoint", tag: "Prospect", gradient: "midnight" },
+          { title: "Sarah Kim", subtitle: "Sales Manager", tag: "Internal", gradient: "carbon" },
+          { title: "David Chen", subtitle: "TechFleet Solutions", tag: "Lead", gradient: "forest" },
+          { title: "Drew Patel", subtitle: "Partner Ops", tag: "Internal", gradient: "steel" },
+        ]}
+      />
 
       {/* ── Main Split: Message List + Detail + Sidebar ── */}
       <div className="grid grid-cols-1 lg:grid-cols-4 gap-3">

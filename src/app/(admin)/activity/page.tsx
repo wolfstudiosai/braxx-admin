@@ -14,7 +14,7 @@ import {
 } from "@/components/ui/select";
 import { Avatar, AvatarFallback } from "@/components/ui/avatar";
 import { cn, formatRelativeTime, getInitials } from "@/lib/utils";
-import { ModuleChart } from "@/components/workspace";
+import { ModuleChart, ContentStrip } from "@/components/workspace";
 
 // ─── Data ───────────────────────────────────────────────────────────────────
 
@@ -183,6 +183,18 @@ export default function AppActivityPage() {
         data={ACTIVITY_CHART_DATA}
         xKey="day"
         series={ACTIVITY_CHART_SERIES}
+      />
+
+      {/* ── Event Highlights ── */}
+      <ContentStrip
+        label="Event Highlights"
+        items={[
+          { title: "GT Pro Hero Published", subtitle: "Content · Mar 17", tag: "Milestone", gradient: "violet" },
+          { title: "Green Wheel Approved", subtitle: "Partners · Mar 17", tag: "New Partner", gradient: "forest" },
+          { title: "PO-2026-018 Received", subtitle: "Inventory · Mar 17", tag: "Shipment", gradient: "steel" },
+          { title: "Spring Video Upload", subtitle: "Content · Mar 16", tag: "Asset", gradient: "carbon" },
+          { title: "Budget Reallocation", subtitle: "Campaign · Mar 16", tag: "Update", gradient: "midnight" },
+        ]}
       />
 
       {/* ── Module Filter Pills ── */}

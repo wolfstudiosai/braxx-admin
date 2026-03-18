@@ -3,7 +3,7 @@
 import { useState } from "react";
 import { Button } from "@/components/ui/button";
 import { Avatar, AvatarFallback } from "@/components/ui/avatar";
-import { StatusDot, ModuleChart } from "@/components/workspace";
+import { StatusDot, ModuleChart, ContentStrip } from "@/components/workspace";
 import { getInitials, cn } from "@/lib/utils";
 import {
   CheckCircle2,
@@ -296,6 +296,18 @@ export default function OperationsPage() {
         data={OPS_CHART_DATA}
         xKey="day"
         series={OPS_CHART_SERIES}
+      />
+
+      {/* ── Recent Captures Strip ── */}
+      <ContentStrip
+        label="Recent Captures"
+        items={[
+          { title: "GT Pro Final QC", subtitle: "Mar 16", tag: "Photo", gradient: "carbon" },
+          { title: "Warehouse Audit", subtitle: "Mar 15", tag: "Photo", gradient: "steel" },
+          { title: "Dealer Kit Unbox", subtitle: "Mar 14", tag: "Video", gradient: "midnight" },
+          { title: "Assembly Detail", subtitle: "Mar 13", tag: "Photo", gradient: "obsidian" },
+          { title: "Shipping Prep", subtitle: "Mar 12", tag: "Photo", gradient: "ember" },
+        ]}
       />
 
       {/* ── Workflow Feed Section ── */}

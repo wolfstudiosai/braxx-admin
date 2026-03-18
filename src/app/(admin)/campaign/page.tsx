@@ -4,7 +4,7 @@ import { useState } from "react";
 import Link from "next/link";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
-import { StatusDot, ModuleChart } from "@/components/workspace";
+import { StatusDot, ModuleChart, ContentStrip } from "@/components/workspace";
 import { cn, formatCurrency, getInitials } from "@/lib/utils";
 import { Avatar, AvatarFallback } from "@/components/ui/avatar";
 import {
@@ -285,6 +285,18 @@ export default function CampaignPage() {
         xKey="name"
         series={CAMP_CHART_SERIES}
         formatValue={(v) => v >= 1000 ? `$${(v/1000).toFixed(0)}K` : v.toLocaleString()}
+      />
+
+      {/* ── Brand Assets ── */}
+      <ContentStrip
+        label="Brand Assets"
+        items={[
+          { title: "GT Pro Key Visual", subtitle: "Spring '26", tag: "Hero", gradient: "obsidian" },
+          { title: "Lifestyle — Urban Ride", subtitle: "IG + TT", tag: "Social", gradient: "midnight" },
+          { title: "Product Lineup", subtitle: "Catalog shot", tag: "Product", gradient: "carbon" },
+          { title: "Ambassador Shoot", subtitle: "Jake Morrison", tag: "Talent", gradient: "steel" },
+          { title: "Event Backdrop", subtitle: "EV Expo 2026", tag: "Events", gradient: "ember" },
+        ]}
       />
 
       {/* ── Campaign Pipeline Section ── */}

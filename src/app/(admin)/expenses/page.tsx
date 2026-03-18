@@ -5,7 +5,7 @@ import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 import { Avatar, AvatarFallback } from "@/components/ui/avatar";
 import { Tabs, TabsList, TabsTrigger, TabsContent } from "@/components/ui/tabs";
-import { ModuleChart } from "@/components/workspace";
+import { ModuleChart, ContentStrip } from "@/components/workspace";
 import { formatCurrency, getInitials, cn } from "@/lib/utils";
 import {
   PieChart,
@@ -298,6 +298,18 @@ export default function ExpensesPage() {
           formatValue={(v) => `$${(v / 1000).toFixed(0)}K`}
         />
       </div>
+
+      {/* ── Recent Receipts ── */}
+      <ContentStrip
+        label="Recent Receipts"
+        items={[
+          { title: "Photo Shoot Invoice", subtitle: "Mar 15 · $4,200", tag: "Approved", gradient: "carbon" },
+          { title: "Dealer Sample Kits", subtitle: "Mar 12 · $3,600", tag: "Approved", gradient: "steel" },
+          { title: "Meta Ad Spend", subtitle: "Mar 16 · $2,800", tag: "Pending", gradient: "ember" },
+          { title: "Warehouse Shelving", subtitle: "Mar 10 · $1,850", tag: "Approved", gradient: "obsidian" },
+          { title: "Ambassador Packages", subtitle: "Mar 17 · $1,200", tag: "Pending", gradient: "violet" },
+        ]}
+      />
 
       {/* ── Charts Row ── */}
       <div className="grid grid-cols-1 lg:grid-cols-3 gap-3">

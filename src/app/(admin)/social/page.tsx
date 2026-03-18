@@ -2,7 +2,7 @@
 
 import { useState } from "react";
 import { Button } from "@/components/ui/button";
-import { ModuleChart } from "@/components/workspace";
+import { ModuleChart, ContentStrip } from "@/components/workspace";
 import { cn } from "@/lib/utils";
 import { ArrowUpRight, Calendar } from "lucide-react";
 
@@ -208,6 +208,18 @@ export default function SocialPage() {
           formatValue={(v) => `${(v / 1000).toFixed(1)}K`}
         />
       </div>
+
+      {/* ── Content Calendar Strip ── */}
+      <ContentStrip
+        label="Upcoming Content"
+        items={[
+          { title: "GT Pro Desert Shoot", subtitle: "Mar 20 · Instagram", tag: "Scheduled", gradient: "rose" },
+          { title: "Factory Tour BTS", subtitle: "Mar 21 · TikTok", tag: "Draft", gradient: "carbon" },
+          { title: "Rider Spotlight", subtitle: "Mar 22 · YouTube", tag: "Scheduled", gradient: "midnight" },
+          { title: "Spring Launch Teaser", subtitle: "Mar 23 · Instagram", tag: "Draft", gradient: "violet" },
+          { title: "GT Sport Reveal", subtitle: "Mar 25 · TikTok", tag: "Draft", gradient: "ember" },
+        ]}
+      />
 
       {/* ── Content Queue Section ── */}
       <div className="flex flex-col lg:flex-row gap-4 mt-2">

@@ -2,7 +2,7 @@
 
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
-import { StatusDot, ModuleChart } from "@/components/workspace";
+import { StatusDot, ModuleChart, ContentStrip } from "@/components/workspace";
 import { cn } from "@/lib/utils";
 import {
   BarChart,
@@ -283,6 +283,18 @@ export default function InventoryPage() {
         data={INV_CHART_DATA}
         xKey="month"
         series={INV_CHART_SERIES}
+      />
+
+      {/* ── Logistics Captures ── */}
+      <ContentStrip
+        label="Logistics Feed"
+        items={[
+          { title: "PO-2026-020 Arrival", subtitle: "10x GT Stealth", tag: "Incoming", gradient: "forest" },
+          { title: "Dealer Dispatch", subtitle: "Pacific Electric", tag: "Outbound", gradient: "steel" },
+          { title: "QC Pass — GT Pro", subtitle: "Batch #2026-03", tag: "QC", gradient: "carbon" },
+          { title: "Battery Pack Stack", subtitle: "120 units", tag: "Storage", gradient: "midnight" },
+          { title: "Damage Assessment", subtitle: "GT Pro Matte", tag: "Incident", gradient: "rose" },
+        ]}
       />
 
       {/* ── Charts Row ── */}

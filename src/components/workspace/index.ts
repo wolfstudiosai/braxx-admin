@@ -5,3 +5,8 @@ export { Panel } from "./Panel";
 export { StatusDot } from "./StatusDot";
 export { ModuleChart } from "./ModuleChart";
 export type { ChartSeries } from "./ModuleChart";
+export { MediaBanner } from "./MediaBanner";
+export { ThumbnailGrid } from "./ThumbnailGrid";
+export type { ThumbnailItem } from "./ThumbnailGrid";
+export { ContentStrip } from "./ContentStrip";
+export type { ContentStripItem } from "./ContentStrip";

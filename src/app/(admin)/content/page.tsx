@@ -17,7 +17,7 @@ import {
   Plus,
   Upload,
 } from "lucide-react";
-import { ModuleChart } from "@/components/workspace";
+import { ModuleChart, ContentStrip } from "@/components/workspace";
 
 // ─── Collections ───────────────────────────────────────────────────────────
 
@@ -199,6 +199,18 @@ export default function ContentPage() {
         data={CONTENT_CHART_DATA}
         xKey="month"
         series={CONTENT_CHART_SERIES}
+      />
+
+      {/* ── Collection Covers ── */}
+      <ContentStrip
+        label="Collection Covers"
+        items={[
+          { title: "Spring 2026 Launch", subtitle: "24 assets", tag: "Active", gradient: "violet" },
+          { title: "Product Photography", subtitle: "38 assets", tag: "Core", gradient: "carbon" },
+          { title: "Social Templates", subtitle: "16 assets", tag: "Templates", gradient: "rose" },
+          { title: "Rider Stories", subtitle: "14 assets", tag: "Series", gradient: "midnight" },
+          { title: "Brand Guidelines", subtitle: "12 assets", tag: "Brand", gradient: "steel" },
+        ]}
       />
 
       {/* ── Search + Pinned Section ── */}
