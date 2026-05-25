@@ -233,9 +233,16 @@ export default function CampaignPage() {
           </h1>
         </div>
         <div className="flex items-center gap-2">
-          <Button size="sm" className="rounded text-xs font-medium h-8 gap-1.5">
+          <Button asChild variant="outline" size="sm" className="rounded text-xs font-medium h-8 gap-1.5">
+            <Link href="/campaign/briefs">
+              Add Brief
+            </Link>
+          </Button>
+          <Button asChild size="sm" className="rounded text-xs font-medium h-8 gap-1.5">
+            <Link href="/campaign/new">
             <Plus className="h-3.5 w-3.5" />
-            New Campaign
+            Add Campaign
+            </Link>
           </Button>
         </div>
       </div>
