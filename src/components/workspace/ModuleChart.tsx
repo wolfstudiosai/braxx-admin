@@ -33,6 +33,8 @@ interface ModuleChartProps {
   formatValue?: (value: number) => string;
 }
 
+type TimeRange = "day" | "week" | "month" | "quarter" | "year";
+
 export function ModuleChart({
   title,
   subtitle,
@@ -43,6 +45,7 @@ export function ModuleChart({
   formatValue = (v) => v.toLocaleString(),
 }: ModuleChartProps) {
   const [viewMode, setViewMode] = useState<"area" | "bar" | "pie">("area");
+  const [timeRange, setTimeRange] = useState<TimeRange>("month");
   const [visible, setVisible] = useState<Set<string>>(
     () => new Set(series.map((s) => s.key))
   );
@@ -61,14 +64,23 @@ export function ModuleChart({
 
   const activeSeries = series.filter((s) => visible.has(s.key));
 
+  const rangeData = useMemo(() => {
+    if (!data.length) return data;
+    if (timeRange === "day") return data.slice(-1);
+    if (timeRange === "week") return data.slice(-7);
+    if (timeRange === "month") return data.slice(-30);
+    if (timeRange === "quarter") return data.slice(-90);
+    return data;
+  }, [data, timeRange]);
+
   const pieData = useMemo(
     () =>
       activeSeries.map((s) => ({
         name: s.label,
-        value: data.reduce((sum, d) => sum + (Number(d[s.key]) || 0), 0),
+        value: rangeData.reduce((sum, d) => sum + (Number(d[s.key]) || 0), 0),
         color: s.color,
       })),
-    [activeSeries, data]
+    [activeSeries, rangeData]
   );
 
   const modes = [
@@ -77,19 +89,73 @@ export function ModuleChart({
     { key: "pie" as const, label: "ARC" },
   ];
 
+  const ranges = [
+    { key: "day" as const, label: "Day" },
+    { key: "week" as const, label: "Week" },
+    { key: "month" as const, label: "Month" },
+    { key: "quarter" as const, label: "Quarter" },
+    { key: "year" as const, label: "Year" },
+  ];
+
+  const metricCards = activeSeries.slice(0, 4).map((s) => {
+    const total = rangeData.reduce((sum, d) => sum + (Number(d[s.key]) || 0), 0);
+    const first = Number(rangeData[0]?.[s.key]) || 0;
+    const last = Number(rangeData[rangeData.length - 1]?.[s.key]) || 0;
+    const trend = first > 0 ? ((last - first) / first) * 100 : last > 0 ? 100 : 0;
+    return {
+      ...s,
+      total,
+      trend,
+    };
+  });
+
   return (
     <div className="eng-card">
-      <div className="flex items-center justify-between border-b border-border px-4 py-2.5">
-        <div className="flex items-center gap-3">
-          <h3 className="text-xs font-mono font-medium uppercase tracking-wider text-foreground">
+      <div className="flex items-center justify-between border-b border-border px-4 py-2">
+        <div className="flex items-center gap-2">
+          <h3 className="text-[11px] font-mono font-medium uppercase tracking-wider text-foreground">
             {title}
           </h3>
-          {subtitle && (
-            <span className="text-[10px] font-mono text-muted-foreground tracking-wide hidden sm:inline">
-              {subtitle}
-            </span>
-          )}
+          {subtitle && <span className="hidden xl:inline text-[10px] text-muted-foreground">{subtitle}</span>}
         </div>
+        <div className="hidden lg:flex items-center gap-1 rounded border border-border p-0.5 bg-background">
+          {ranges.map((range) => (
+            <button
+              key={range.key}
+              onClick={() => setTimeRange(range.key)}
+              className={cn(
+                "px-2 py-1 rounded text-[9px] font-mono uppercase tracking-wider transition-colors",
+                timeRange === range.key
+                  ? "bg-foreground text-background"
+                  : "text-muted-foreground hover:text-foreground"
+              )}
+            >
+              {range.label}
+            </button>
+          ))}
+        </div>
+      </div>
+
+      {metricCards.length > 0 ? (
+        <div className="grid grid-cols-2 lg:grid-cols-4 border-b border-border">
+          {metricCards.map((m) => (
+            <div key={m.key} className="px-4 py-2.5 border-r border-border last:border-r-0">
+              <span className="text-[9px] font-mono uppercase tracking-wider text-muted-foreground block">
+                {m.label}
+              </span>
+              <div className="flex items-center gap-1.5">
+                <span className="text-sm font-mono tabular-nums text-foreground">{formatValue(m.total)}</span>
+                <span className={cn("text-[10px] font-medium", m.trend >= 0 ? "text-emerald-600" : "text-red-500")}>
+                  {m.trend >= 0 ? "+" : ""}
+                  {m.trend.toFixed(1)}%
+                </span>
+              </div>
+            </div>
+          ))}
+        </div>
+      ) : null}
+
+      <div className="flex items-center justify-between border-b border-border px-4 py-2.5">
         <div className="flex items-center gap-px rounded border border-border overflow-hidden">
           {modes.map((m) => (
             <button
@@ -106,6 +172,9 @@ export function ModuleChart({
             </button>
           ))}
         </div>
+        <button className="rounded-full border border-border bg-secondary/50 px-3 py-1 text-[9px] font-mono uppercase tracking-wider text-muted-foreground hover:text-foreground transition-colors">
+          View Records
+        </button>
       </div>
 
       <div className="flex items-center gap-3 px-4 py-2 border-b border-border/50">
@@ -131,7 +200,7 @@ export function ModuleChart({
         <ResponsiveContainer width="100%" height="100%">
           {viewMode === "area" ? (
             <AreaChart
-              data={data}
+              data={rangeData}
               margin={{ top: 4, right: 4, left: -20, bottom: 0 }}
             >
               <defs>
@@ -212,7 +281,7 @@ export function ModuleChart({
             </AreaChart>
           ) : viewMode === "bar" ? (
             <BarChart
-              data={data}
+              data={rangeData}
               margin={{ top: 4, right: 4, left: -20, bottom: 0 }}
             >
               <CartesianGrid

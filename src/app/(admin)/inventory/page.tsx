@@ -1,5 +1,6 @@
 "use client";
 
+import Link from "next/link";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 import { StatusDot, ModuleChart, ContentStrip } from "@/components/workspace";
@@ -209,9 +210,11 @@ export default function InventoryPage() {
           </h1>
         </div>
         <div className="flex items-center gap-2">
-          <Button size="sm" className="rounded text-xs font-medium h-8 gap-1.5">
+          <Button asChild size="sm" className="rounded text-xs font-medium h-8 gap-1.5">
+            <Link href="/inventory/update">
             <SlidersHorizontal className="h-3.5 w-3.5" />
-            Adjust Stock
+            Update Inventory
+            </Link>
           </Button>
           <Button variant="outline" size="sm" className="rounded text-xs font-medium h-8 gap-1.5">
             <Download className="h-3.5 w-3.5" />

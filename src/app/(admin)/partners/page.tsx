@@ -1,6 +1,7 @@
 "use client";
 
 import { useState } from "react";
+import Link from "next/link";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 import { FeedItem, StatusDot, ModuleChart, ContentStrip } from "@/components/workspace";
@@ -198,13 +199,20 @@ export default function PartnersPage() {
           </h1>
         </div>
         <div className="flex items-center gap-2">
+          <Button asChild variant="outline" size="sm" className="text-xs font-medium rounded h-8 gap-1.5">
+            <Link href="/partners/requests">
+              Review Requests
+            </Link>
+          </Button>
           <Button variant="outline" size="sm" className="text-xs font-medium rounded h-8 gap-1.5">
             <Download className="h-3.5 w-3.5" />
             Export
           </Button>
-          <Button size="sm" className="text-xs font-medium rounded h-8 gap-1.5">
+          <Button asChild size="sm" className="text-xs font-medium rounded h-8 gap-1.5">
+            <Link href="/partners/dealers">
             <Plus className="h-3.5 w-3.5" />
             Add Partner
+            </Link>
           </Button>
         </div>
       </div>
