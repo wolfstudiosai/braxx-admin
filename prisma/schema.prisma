@@ -32,6 +32,7 @@ model User {
   assignedOrders   Order[]           @relation("OrderAssignedRep")
   uploadedAssets   Asset[]           @relation("AssetUploadedBy")
   publishedContent ContentBlock[]    @relation("ContentPublishedBy")
+  publishedBlogs   Blog[]            @relation("BlogPublishedBy")
   activityLogs     ActivityLog[]     @relation("ActivityActor")
   notes            Note[]            @relation("NoteAuthor")
   inventoryMoves   InventoryMovement[] @relation("MovementPerformedBy")
@@ -664,4 +665,33 @@ model Expense {
   @@index([status])
   @@index([category])
   @@index([requestedById])
+}
+
+// ─── BLOG ─────────────────────────────────────────────────────
+
+model Blog {
+  id              String    @id @default(cuid())
+  title           String
+  slug            String    @unique
+  excerpt         String?   @db.Text
+  coverImageUrl   String?
+  body            Json      // string[]
+  gallery         Json?     // string[]
+  extendedHeading String?
+  extendedBody    Json?     // string[]
+  tag             String?
+  bikeModel       String?   // 'GT' | 'GT Pro' | 'Both'
+  category        String    // 'engineering' | 'design' | 'lifestyle' | 'community'
+  isHero          Boolean   @default(false)
+  status          String    @default("draft") // 'draft' | 'published'
+  publishedAt     DateTime?
+  publishedById   String?
+  createdAt       DateTime  @default(now())
+  updatedAt       DateTime  @updatedAt
+
+  publishedBy User? @relation("BlogPublishedBy", fields: [publishedById], references: [id])
+
+  @@index([status])
+  @@index([category])
+  @@index([slug])
 }
