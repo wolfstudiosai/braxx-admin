@@ -1,5 +1,6 @@
 "use client";
 
+import Link from "next/link";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 import { Input } from "@/components/ui/input";
@@ -16,6 +17,7 @@ import {
   MoreHorizontal,
   Plus,
   Upload,
+  Newspaper,
 } from "lucide-react";
 import { ModuleChart, ContentStrip } from "@/components/workspace";
 
@@ -142,6 +144,12 @@ export default function ContentPage() {
           </h1>
         </div>
         <div className="flex items-center gap-2">
+          <Link href="/content/blogs">
+            <Button variant="outline" size="sm" className="text-xs font-medium rounded h-8 gap-1.5">
+              <Newspaper className="h-3.5 w-3.5" />
+              Manage Blogs
+            </Button>
+          </Link>
           <Button variant="outline" size="sm" className="text-xs font-medium rounded h-8 gap-1.5">
             <Upload className="h-3.5 w-3.5" />
             Upload
